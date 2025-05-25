@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ProjectGrid } from "@/components/project-grid"
 import { MainNav } from "@/components/main-nav"
 import { UserNav } from "@/components/user-nav"
+import { projects } from "@/types/project"
 
 export default function HomePage() {
   return (
@@ -33,7 +34,7 @@ export default function HomePage() {
           <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
             <div>
               <h1 className="text-3xl font-bold tracking-tight">Discover</h1>
-              <p className="text-muted-foreground">Explore creative work from around the world</p>
+              <p className="text-muted-foreground">전제 진행중인 프로젝트를 확인해보세요</p>
             </div>
             <div className="flex w-full items-center gap-2 md:w-auto">
               <div className="relative md:hidden">
@@ -60,16 +61,16 @@ export default function HomePage() {
             </TabsList>
 
             <TabsContent value="featured" className="mt-0">
-              <ProjectGrid />
+              <ProjectGrid projects={projects} />
             </TabsContent>
             <TabsContent value="recent" className="mt-0">
-              <ProjectGrid />
+              <ProjectGrid projects={projects} />
             </TabsContent>
             <TabsContent value="popular" className="mt-0">
-              <ProjectGrid />
+              <ProjectGrid projects={projects} />
             </TabsContent>
             <TabsContent value="following" className="mt-0">
-              <ProjectGrid />
+              <ProjectGrid projects={projects} />
             </TabsContent>
           </Tabs>
         </div>

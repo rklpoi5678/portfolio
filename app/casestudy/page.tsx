@@ -30,8 +30,9 @@ export default function JobsPage() {
         <div className="container px-4 py-6 sm:px-8 md:py-8">
           <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
             <div>
-              <h1 className="text-3xl font-bold tracking-tight">Design Jobs</h1>
-              <p className="text-muted-foreground">Find your next opportunity in design</p>
+              <h1 className="text-3xl font-bold tracking-tight">Case Study</h1>
+              <p className="text-muted-foreground">"모든 프로젝트는 하나의 문제에서 시작됐습니다.
+이 Case Study는 그 문제를 어떻게 정의했고, 어떤 방식으로 접근했으며, 결과적으로 어떤 선택을 했는지에 대한 기록입니다."</p>
             </div>
             <div className="flex w-full items-center gap-2 md:w-auto">
               <div className="relative md:hidden">
@@ -44,114 +45,114 @@ export default function JobsPage() {
           <div className="mb-8 grid gap-4 md:grid-cols-[250px_1fr]">
             <div className="space-y-6 rounded-lg border p-4">
               <div>
-                <h3 className="mb-2 font-medium">Job Type</h3>
+                <h3 className="mb-2 font-medium">문서 유형</h3>
                 <div className="space-y-2">
                   <div className="flex items-center">
-                    <input type="checkbox" id="full-time" className="mr-2" />
-                    <label htmlFor="full-time" className="text-sm">
-                      Full-time
+                    <input type="checkbox" id="pdf" className="mr-2" />
+                    <label htmlFor="pdf" className="text-sm">
+                      PDF
                     </label>
                   </div>
                   <div className="flex items-center">
-                    <input type="checkbox" id="part-time" className="mr-2" />
-                    <label htmlFor="part-time" className="text-sm">
-                      Part-time
+                    <input type="checkbox" id="hwp" className="mr-2" />
+                    <label htmlFor="hwp" className="text-sm">
+                      HWP
                     </label>
                   </div>
                   <div className="flex items-center">
-                    <input type="checkbox" id="contract" className="mr-2" />
-                    <label htmlFor="contract" className="text-sm">
-                      Contract
+                    <input type="checkbox" id="ppt" className="mr-2" />
+                    <label htmlFor="ppt" className="text-sm">
+                      PPT
                     </label>
                   </div>
                   <div className="flex items-center">
-                    <input type="checkbox" id="freelance" className="mr-2" />
-                    <label htmlFor="freelance" className="text-sm">
-                      Freelance
+                    <input type="checkbox" id="doc" className="mr-2" />
+                    <label htmlFor="doc" className="text-sm">
+                      DOC
                     </label>
                   </div>
                 </div>
               </div>
 
               <div>
-                <h3 className="mb-2 font-medium">Location</h3>
+                <h3 className="mb-2 font-medium">카테고리</h3>
                 <div className="space-y-2">
                   <div className="flex items-center">
-                    <input type="checkbox" id="remote" className="mr-2" />
-                    <label htmlFor="remote" className="text-sm">
-                      Remote
+                    <input type="checkbox" id="web" className="mr-2" />
+                    <label htmlFor="web" className="text-sm">
+                      웹 개발
                     </label>
                   </div>
                   <div className="flex items-center">
-                    <input type="checkbox" id="hybrid" className="mr-2" />
-                    <label htmlFor="hybrid" className="text-sm">
-                      Hybrid
+                    <input type="checkbox" id="mobile" className="mr-2" />
+                    <label htmlFor="mobile" className="text-sm">
+                      모바일 앱
                     </label>
                   </div>
                   <div className="flex items-center">
-                    <input type="checkbox" id="on-site" className="mr-2" />
-                    <label htmlFor="on-site" className="text-sm">
-                      On-site
+                    <input type="checkbox" id="ai" className="mr-2" />
+                    <label htmlFor="ai" className="text-sm">
+                      AI/ML
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input type="checkbox" id="marketing" className="mr-2" />
+                    <label htmlFor="marketing" className="text-sm">
+                      마케팅
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input type="checkbox" id="repair" className="mr-2" />
+                    <label htmlFor="repair" className="text-sm">
+                      정비
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input type="checkbox" id="server" className="mr-2" />
+                    <label htmlFor="server" className="text-sm">
+                      서버
                     </label>
                   </div>
                 </div>
               </div>
 
               <div>
-                <h3 className="mb-2 font-medium">Experience Level</h3>
+                <h3 className="mb-2 font-medium">기술 스택</h3>
                 <div className="space-y-2">
                   <div className="flex items-center">
-                    <input type="checkbox" id="entry" className="mr-2" />
-                    <label htmlFor="entry" className="text-sm">
-                      Entry Level
+                    <input type="checkbox" id="react" className="mr-2" />
+                    <label htmlFor="react" className="text-sm">
+                      React
                     </label>
                   </div>
                   <div className="flex items-center">
-                    <input type="checkbox" id="mid" className="mr-2" />
-                    <label htmlFor="mid" className="text-sm">
-                      Mid Level
+                    <input type="checkbox" id="react-native" className="mr-2" />
+                    <label htmlFor="react-native" className="text-sm">
+                      React Native
                     </label>
                   </div>
                   <div className="flex items-center">
-                    <input type="checkbox" id="senior" className="mr-2" />
-                    <label htmlFor="senior" className="text-sm">
-                      Senior Level
+                    <input type="checkbox" id="next" className="mr-2" />
+                    <label htmlFor="next" className="text-sm">
+                      Next.js
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input type="checkbox" id="python" className="mr-2" />
+                    <label htmlFor="python" className="text-sm">
+                      Python
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input type="checkbox" id="flutter" className="mr-2" />
+                    <label htmlFor="flutter" className="text-sm">
+                      Flutter
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div>
-                <h3 className="mb-2 font-medium">Specialization</h3>
-                <div className="space-y-2">
-                  <div className="flex items-center">
-                    <input type="checkbox" id="ui-ux" className="mr-2" />
-                    <label htmlFor="ui-ux" className="text-sm">
-                      UI/UX Design
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input type="checkbox" id="graphic" className="mr-2" />
-                    <label htmlFor="graphic" className="text-sm">
-                      Graphic Design
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input type="checkbox" id="product" className="mr-2" />
-                    <label htmlFor="product" className="text-sm">
-                      Product Design
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input type="checkbox" id="motion" className="mr-2" />
-                    <label htmlFor="motion" className="text-sm">
-                      Motion Design
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <Button className="w-full">Apply Filters</Button>
+              <Button className="w-full">필터 적용</Button>
             </div>
 
             <div className="space-y-6">

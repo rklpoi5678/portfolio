@@ -1,6 +1,8 @@
 import { ArrowLeft, Heart, MessageSquare, Share2, Eye } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { notFound } from "next/navigation"
+import { projects } from "@/types/project"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
@@ -10,31 +12,17 @@ import { UserNav } from "@/components/user-nav"
 import { ProjectComments } from "@/components/project-comments"
 import { RelatedProjects } from "@/components/related-projects"
 
-export default function ProjectPage({ params }: { params: { id: string } }) {
-  // This would normally fetch data based on the ID
-  const project = {
-    id: params.id,
-    title: "Minimalist Brand Identity Design",
-    description:
-      "A clean and modern brand identity design for a tech startup. The project includes logo design, color palette, typography, and various brand applications.",
-    images: [
-      "/modern-brand-identity.png",
-      "/placeholder.svg?key=30ry5",
-      "/placeholder.svg?key=lieet",
-      "/placeholder.svg?key=bdm26",
-    ],
-    creator: {
-      name: "Alex Morgan",
-      avatar: "/diverse-group.png",
-      followers: "12.5k",
-    },
-    stats: {
-      views: "24.3k",
-      likes: "1.8k",
-      comments: 86,
-    },
-    tags: ["Branding", "Logo Design", "Identity", "Minimal"],
-    createdAt: "May 2, 2024",
+interface ProjectPageProps {
+  params: {
+    id: string
+  }
+}
+
+export default function ProjectPage({ params }: ProjectPageProps) {
+  const project = projects.find((p) => p.id === params.id)
+
+  if (!project) {
+    notFound()
   }
 
   return (
@@ -79,21 +67,28 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                 </div>
               </div>
               <div className="space-y-6">
-                {project.images.map((image, index) => (
-                  <div key={index} className="overflow-hidden rounded-lg">
-                    <Image
-                      src={image || "/placeholder.svg"}
-                      alt={`Project image ${index + 1}`}
-                      width={1200}
-                      height={600}
-                      className="w-full object-cover"
-                    />
-                  </div>
-                ))}
+                <div className="aspect-video relative rounded-lg overflow-hidden">
+                  <img
+                    src={project.images[0]}
+                    alt={project.title}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+                <div className="grid grid-cols-3 gap-4">
+                  {project.images.slice(1).map((image, index) => (
+                    <div key={index} className="aspect-video relative rounded-lg overflow-hidden">
+                      <img
+                        src={image}
+                        alt={`${project.title} - ${index + 2}`}
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
               <div className="mt-8">
                 <h2 className="text-xl font-semibold">About this project</h2>
-                <p className="mt-2 text-muted-foreground">{project.description}</p>
+                <p className="mt-2 text-muted-foreground whitespace-pre-line">{project.description}</p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <div key={tag} className="rounded-full bg-muted px-3 py-1 text-xs font-medium">

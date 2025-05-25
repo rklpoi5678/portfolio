@@ -34,7 +34,7 @@ export default function DesignersPage() {
           <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
             <div>
               <h1 className="text-3xl font-bold tracking-tight">Designers</h1>
-              <p className="text-muted-foreground">Discover talented designers from around the world</p>
+              <p className="text-muted-foreground">나의 흔적이 지도가 되는 여정</p>
             </div>
             <div className="flex w-full items-center gap-2 md:w-auto">
               <div className="relative md:hidden">
@@ -65,6 +65,21 @@ export default function DesignersPage() {
             </Badge>
             <Badge variant="outline" className="rounded-full px-4 py-1">
               Photography
+            </Badge>
+            <Badge variant="outline" className="rounded-full px-4 py-1">
+              Development
+            </Badge>
+            <Badge variant="outline" className="rounded-full px-4 py-1">
+              Marketing
+            </Badge>
+            <Badge variant="outline" className="rounded-full px-4 py-1">
+              PR
+            </Badge>
+            <Badge variant="outline" className="rounded-full px-4 py-1">
+              Business
+            </Badge>
+            <Badge variant="outline" className="rounded-full px-4 py-1">
+              Management
             </Badge>
           </div>
 
