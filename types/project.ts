@@ -40,7 +40,7 @@ export const projects: Project[] = [
       followers: "12.5k",
     },
     links: [
-      { title: 'GitHub', url: 'https://github.com/rklpoi5678/meta-os' },
+      { title: 'GitHub', url: 'https://github.com/rklpoi5678/MetaOS' },
       { title: 'Demo', url: 'https://meta-os.vercel.app' }
     ],
     stats: {
@@ -54,7 +54,7 @@ export const projects: Project[] = [
   },
   {
     id: "2",
-    title: "구구프래시 - 농산품 직거래 플랫폼",
+    title: "구구프래시 - 농산품 직거래 플랫폼(프로젝트 보류됨)",
     description: "산지직송 신선한 농산물 소비 플랫폼, 농업자와 소비자의 연결 및 문제점 발견, 하이브리드 웹앱",
     images: [
       "/portfolio/guguFresh.png",
@@ -68,7 +68,7 @@ export const projects: Project[] = [
       followers: "12.5k",
     },
     links: [
-        { title: 'GitHub', url: 'https://github.com/rklpoi5678' },
+        { title: 'GitHub', url: 'https://github.com/rklpoi5678/App' },
         { title: 'Demo', url: 'https://gugufresh.flutterflow.app/' }
       ],
     stats: {
@@ -93,7 +93,7 @@ export const projects: Project[] = [
     creator: {
       name: "Kim youn gi",
       avatar: "/avatar-simple.png",
-      followers: "12.5k",
+      followers: "3",
     },
     links: [
       { title: 'GitHub', url: 'https://github.com/rklpoi5678/tembus' },
@@ -106,7 +106,63 @@ export const projects: Project[] = [
     },
     tags: ["Next.js", "Neon", "Zustand", "v0", "bcyptjs"],
     tools: ["Next.js", "Neon", "Zustand", "v0", "bcyptjs"],
-    createdAt: "2025-04-10",
+    createdAt: "2025-05-24",
+  },
+  {
+    id: "4",
+    title: "블로그 - nextra옵시디언 블로그",
+    description: "글로 쓰이지만, 마음으로 움직이고, 시스템으로 녹아들기를 바랍니다.\n이 블로그는 흐트러진 생각들을 정돈하고, 다시 흘러가게 만드는 일 — 그게 내가 여기서 하는 일입니다.",
+    images: [
+      "/portfolio/nextra-blog.png",
+      "/placeholder.svg?key=30ry5",
+      "/placeholder.svg?key=lieet",
+      "/placeholder.svg?key=bdm26",
+    ],
+    creator: {
+      name: "Kim youn gi",
+      avatar: "/avatar-simple.png",
+      followers: "1k",
+    },
+    links: [
+      { title: 'GitHub', url: 'https://github.com/rklpoi5678/nextra-blog' },
+      { title: 'Demo', url: 'https://nextra-blog-3t4s.vercel.app/' }
+    ],
+    stats: {
+      views: "50",
+      likes: "3",
+      comments: 0,
+    },
+    tags: ["Next.js", "Nextra", "Zustand", "Obsidian", "MeatOsComponent"],
+    tools: ["Next.js", "Nextra", "Zustand", "Obsidian", "MeatOsComponent"],
+    createdAt: "2025-04-14",
+  },
+  {
+    id: "5",
+    title: "구구트래블 - 오프라인 현지 투어사 지도",
+    description: "구구트래블은 오프라인 현지 투어사 지도 플랫폼입니다. 현지 투어사 지도를 확인하고, 안내소를 탐색할 수 있습니다.",
+    images: [
+      "/portfolio/guguTravel.png",
+      "/placeholder.svg?key=30ry5",
+      "/placeholder.svg?key=lieet",
+      "/placeholder.svg?key=bdm26",
+    ],
+    creator: {
+      name: "Kim youn gi",
+      avatar: "/avatar-simple.png",
+      followers: "1k",
+    },
+    links: [
+      { title: 'GitHub', url: 'https://github.com/rklpoi5678/Apps/tree/master/apps/guguTravel' },
+      { title: 'GooglePlayStore', url: 'https://play.google.com/store/apps/details?id=com.gugutravel.app' }
+    ],
+    stats: {
+      views: "10",
+      likes: "0",
+      comments: 0,
+    },
+    tags: ["Next.js", "Nextra", "Zustand", "Obsidian", "MeatOsComponent"],
+    tools: ["Next.js", "Nextra", "Zustand", "Obsidian", "MeatOsComponent"],
+    createdAt: "2025-05-19",
   },
   // 추가 프로젝트 데이터...
 ] 
