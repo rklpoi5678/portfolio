@@ -1,0 +1,30 @@
+import Link from "next/link"
+import { Palette } from "lucide-react"
+
+export function MainNav() {
+  return (
+    <div className="flex items-center gap-6 md:gap-10">
+      <Link href="/" className="flex items-center gap-2">
+        <Palette className="h-6 w-6" />
+        <span className="hidden font-bold sm:inline-block">Portfolio</span>
+      </Link>
+      <nav className="hidden gap-6 md:flex">
+        <Link href="/" className="text-sm font-medium transition-colors hover:text-primary">
+          Discover
+        </Link>
+        <Link
+          href="/designers"
+          className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+        >
+          Designers
+        </Link>
+        <Link href="/casestudy" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+          Casestudy
+        </Link>
+        <Link href="/learn" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+          Learn
+        </Link>
+      </nav>
+    </div>
+  )
+}
