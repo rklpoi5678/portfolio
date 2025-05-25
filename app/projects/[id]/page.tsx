@@ -11,6 +11,7 @@ import { MainNav } from "@/components/main-nav"
 import { UserNav } from "@/components/user-nav"
 import { ProjectComments } from "@/components/project-comments"
 import { RelatedProjects } from "@/components/related-projects"
+import { Badge } from "@/components/ui/badge"
 
 interface ProjectPageProps {
   params: {
@@ -102,54 +103,70 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             </div>
             <div className="space-y-6">
               <div className="rounded-lg border p-4">
-                <h3 className="font-medium">Project Stats</h3>
+                <h3 className="font-medium">프로젝트 관심도</h3>
                 <div className="mt-4 grid grid-cols-3 gap-4">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center gap-1 text-muted-foreground">
                       <Eye className="h-4 w-4" />
-                      <span className="text-sm">Views</span>
+                      <span className="text-sm">조회수</span>
                     </div>
                     <p className="font-medium">{project.stats.views}</p>
                   </div>
                   <div className="flex flex-col items-center">
                     <div className="flex items-center gap-1 text-muted-foreground">
                       <Heart className="h-4 w-4" />
-                      <span className="text-sm">Likes</span>
+                      <span className="text-sm">좋아요</span>
                     </div>
                     <p className="font-medium">{project.stats.likes}</p>
                   </div>
                   <div className="flex flex-col items-center">
                     <div className="flex items-center gap-1 text-muted-foreground">
                       <MessageSquare className="h-4 w-4" />
-                      <span className="text-sm">Comments</span>
+                      <span className="text-sm">댓글</span>
                     </div>
                     <p className="font-medium">{project.stats.comments}</p>
                   </div>
                 </div>
                 <div className="mt-6 flex gap-2">
-                  <Button className="flex-1">
-                    <Heart className="mr-2 h-4 w-4" />
-                    Like
-                  </Button>
+                  {project.links?.map((link) => (
+                    <Button key={link.title} variant="outline" asChild>
+                      <a href={link.url} target="_blank" rel="noopener noreferrer">
+                        {link.title}
+                      </a>
+                    </Button>
+                  ))}
                   <Button variant="outline" size="icon">
                     <Share2 className="h-4 w-4" />
                   </Button>
                 </div>
               </div>
               <div className="rounded-lg border p-4">
-                <h3 className="font-medium">Project Information</h3>
+                <h3 className="font-medium">프로젝트 정보</h3>
                 <div className="mt-4 space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Published</span>
-                    <span>{project.createdAt}</span>
+                  {project.links?.map((link) => (
+                    <div key={link.title} className="flex justify-between items-start gap-2">
+                      <span className="text-muted-foreground font-bold flex-shrink-0">{link.title}</span>
+                      <a 
+                        href={link.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="text-blue-600 hover:underline font-bold text-right break-all min-w-0"
+                      >
+                        {link.url}
+                      </a>
+                    </div>
+                  ))}
+                  <div className="flex justify-between items-start gap-2">
+                    <span className="text-muted-foreground flex-shrink-0">게시일</span>
+                    <span className="text-right min-w-0">{project.createdAt}</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Tools</span>
-                    <span>Figma, Photoshop</span>
+                  <div className="flex justify-between items-start gap-2">
+                    <span className="text-muted-foreground flex-shrink-0">Tools</span>
+                    <span className="text-right min-w-0 break-words">{project.tools?.join(', ')}</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">License</span>
-                    <span>All Rights Reserved</span>
+                  <div className="flex justify-between items-start gap-2">
+                    <span className="text-muted-foreground flex-shrink-0">License</span>
+                    <span className="text-right min-w-0">All Rights Reserved</span>
                   </div>
                 </div>
               </div>

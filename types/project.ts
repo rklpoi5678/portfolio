@@ -8,6 +8,11 @@ export interface Project {
     avatar: string
     followers: string
   }
+  links?: {
+    title: string
+    url: string
+  }[]
+  tools?: string[]
   stats: {
     views: string
     likes: string
@@ -30,16 +35,21 @@ export const projects: Project[] = [
       "/placeholder.svg?key=bdm26",
     ],
     creator: {
-      name: "Alex Morgan",
-      avatar: "/diverse-group.png",
+      name: "Kim youn gi",
+      avatar: "/avatar-simple.png",
       followers: "12.5k",
     },
+    links: [
+      { title: 'GitHub', url: 'https://github.com/rklpoi5678/meta-os' },
+      { title: 'Demo', url: 'https://meta-os.vercel.app' }
+    ],
     stats: {
       views: "20",
       likes: "3",
       comments: 2,
     },
     tags: ["Monorepo", "AI", "Design", "Next.js", "Supabase", "Zustand", "OpenAI API", "Mistral", "i8n", "framer-motion"],
+    tools: ["Next.js", "Supabase", "Zustand", "OpenAI API", "Mistral"],
     createdAt: "2025-04-10",
   },
   {
@@ -54,15 +64,20 @@ export const projects: Project[] = [
     ],
     creator: {
       name: "Kim youn gi",
-      avatar: "/diverse-group.png",
+      avatar: "/avatar-simple.png",
       followers: "12.5k",
     },
+    links: [
+        { title: 'GitHub', url: 'https://github.com/rklpoi5678' },
+        { title: 'Demo', url: 'https://gugufresh.flutterflow.app/' }
+      ],
     stats: {
       views: "5",
       likes: "3",
       comments: 1,
     },
     tags: ["PR", "Marketing", "Flutter", "Firebase", "FlutterFlow"],
+    tools: ["Flutter", "Firebase", "FlutterFlow"],
     createdAt: "2024-07-23",
   },
   {
@@ -77,15 +92,20 @@ export const projects: Project[] = [
     ],
     creator: {
       name: "Kim youn gi",
-      avatar: "/diverse-group.png",
+      avatar: "/avatar-simple.png",
       followers: "12.5k",
     },
+    links: [
+      { title: 'GitHub', url: 'https://github.com/rklpoi5678/tembus' },
+      { title: 'Demo', url: 'https://tembus.vercel.app/' }
+    ],
     stats: {
       views: "0",
       likes: "0",
       comments: 0,
     },
     tags: ["Next.js", "Neon", "Zustand", "v0", "bcyptjs"],
+    tools: ["Next.js", "Neon", "Zustand", "v0", "bcyptjs"],
     createdAt: "2025-04-10",
   },
   // 추가 프로젝트 데이터...
