@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-
+import { projects } from "@/types/project"
 // Sample related projects
 const relatedProjects = [
   {
@@ -23,13 +23,13 @@ const relatedProjects = [
 export function RelatedProjects() {
   return (
     <div className="rounded-lg border p-4">
-      <h3 className="font-medium">More from this creator</h3>
+      <h3 className="font-medium">다른 프로젝트</h3>
       <div className="mt-4 space-y-4">
-        {relatedProjects.map((project) => (
+        {projects.map((project) => (
           <Link key={project.id} href={`/projects/${project.id}`} className="flex gap-3 hover:opacity-80">
             <div className="h-16 w-24 overflow-hidden rounded">
               <Image
-                src={project.image || "/placeholder.svg"}
+                src={project.images[0] || "/placeholder.svg"}
                 alt={project.title}
                 width={200}
                 height={120}

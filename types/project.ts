@@ -58,7 +58,7 @@ export const projects: Project[] = [
     description: "산지직송 신선한 농산물 소비 플랫폼, 농업자와 소비자의 연결 및 문제점 발견, 하이브리드 웹앱",
     images: [
       "/portfolio/guguFresh.png",
-      "/placeholder.svg?key=30ry5",
+      "/portfolio/guguFresh_splash.png",
       "/placeholder.svg?key=lieet",
       "/placeholder.svg?key=bdm26",
     ],
@@ -142,7 +142,7 @@ export const projects: Project[] = [
     description: "구구트래블은 오프라인 현지 투어사 지도 플랫폼입니다. 현지 투어사 지도를 확인하고, 안내소를 탐색할 수 있습니다.",
     images: [
       "/portfolio/guguTravel.png",
-      "/placeholder.svg?key=30ry5",
+      "/portfolio/guguTravel_splash.png",
       "/placeholder.svg?key=lieet",
       "/placeholder.svg?key=bdm26",
     ],
@@ -163,6 +163,34 @@ export const projects: Project[] = [
     tags: ["Next.js", "Nextra", "Zustand", "Obsidian", "MeatOsComponent"],
     tools: ["Next.js", "Nextra", "Zustand", "Obsidian", "MeatOsComponent"],
     createdAt: "2025-05-19",
+  },
+  {
+    id: "6",
+    title: "Monkey Propel (Simple touch & shake game)",
+    description: "원숭이를 터치하거나 흔들어서 목적지로 보내는 간단한 게임입니다.",
+    images: [
+      "/portfolio/monkeyPropel.png",
+      "/placeholder.svg?key=30ry5",
+      "/placeholder.svg?key=lieet",
+      "/placeholder.svg?key=bdm26",
+    ],
+    creator: {
+      name: "Kim youn gi",
+      avatar: "/avatar-simple.png",
+      followers: "1k",
+    },
+    links: [
+      { title: 'GitHub', url: 'https://github.com/rklpoi5678/Apps/tree/master/apps/monkeythrowing' },
+      { title: 'GooglePlayStore', url: 'https://play.google.com/store/apps/details?id=com.monkeythrowing.app' }
+    ],
+    stats: {
+      views: "1",
+      likes: "0",
+      comments: 0,
+    },
+    tags: ["ReactNative", "Expo", "monorepo", "expo-linear-gradient", "expo-release-it", "gradle", "android"],
+    tools: ["ReactNative", "Expo"],
+    createdAt: "2025-05-29",
   },
   // 추가 프로젝트 데이터...
 ] 

@@ -13,10 +13,10 @@ export function MainNav() {
           Discover
         </Link>
         <Link
-          href="/designers"
+          href="/Fragments"
           className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
         >
-          Designers
+          Fragments
         </Link>
         <Link href="/casestudy" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
           Casestudy

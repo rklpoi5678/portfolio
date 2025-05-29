@@ -50,7 +50,7 @@ export function ProjectComments({ commentCount }: ProjectCommentsProps) {
 
   return (
     <div>
-      <h2 className="text-xl font-semibold">Comments ({commentCount})</h2>
+      <h2 className="text-xl font-semibold">댓글 ({commentCount})</h2>
       <div className="mt-6 flex gap-4">
         <Avatar className="h-10 w-10">
           <AvatarImage src="/diverse-group.png" alt="Your avatar" />
@@ -58,7 +58,7 @@ export function ProjectComments({ commentCount }: ProjectCommentsProps) {
         </Avatar>
         <div className="flex-1">
           <Textarea
-            placeholder="Add a comment..."
+            placeholder="댓글을 작성해주세요..."
             className="min-h-[80px] resize-none"
             value={comment}
             onChange={(e) => setComment(e.target.value)}
@@ -66,12 +66,14 @@ export function ProjectComments({ commentCount }: ProjectCommentsProps) {
           <div className="mt-2 flex justify-end">
             <Button disabled={!comment.trim()}>
               <Send className="mr-2 h-4 w-4" />
-              Post Comment
+              댓글 작성
             </Button>
           </div>
         </div>
       </div>
-      <div className="mt-8 space-y-6">
+
+      {/* 추후 댓글 기능 추가 */}
+      {/* <div className="mt-8 space-y-6">
         {comments.map((comment) => (
           <div key={comment.id} className="flex gap-4">
             <Avatar className="h-10 w-10">
@@ -95,7 +97,7 @@ export function ProjectComments({ commentCount }: ProjectCommentsProps) {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   )
 }

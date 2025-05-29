@@ -1,5 +1,7 @@
+"use client"
 import { Search } from "lucide-react"
-import Link from "next/link"
+import { useState, useMemo } from "react"
+import type { ChangeEventHandler } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -9,7 +11,28 @@ import { MainNav } from "@/components/main-nav"
 import { UserNav } from "@/components/user-nav"
 import { projects } from "@/types/project"
 
+const NoResults = () => (
+  <div className="flex flex-col items-center justify-center py-10 text-center">
+    <p className="text-lg font-medium">검색 결과가 없습니다</p>
+    <p className="text-sm text-muted-foreground">다른 검색어로 시도해보세요</p>
+  </div>
+)
+
 export default function HomePage() {
+  const [search, setSearch] = useState("")
+
+  const filteredProjects = useMemo(() => {
+    return projects.filter((project) => {
+      const searchLower = search.toLowerCase()
+      return (
+        project.title.toLowerCase().includes(searchLower) ||
+        project.description.toLowerCase().includes(searchLower) ||
+        project.tags.some(tag => tag.toLowerCase().includes(searchLower)) ||
+        project.tools?.some(tool => tool.toLowerCase().includes(searchLower))
+      )
+    })
+  }, [search, projects])
+
   return (
     <div className="flex min-h-screen flex-col">
       <header className="sticky top-0 z-50 w-full border-b bg-background">
@@ -20,11 +43,13 @@ export default function HomePage() {
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
               <Input
                 type="search"
-                placeholder="Search projects..."
+                placeholder="프로젝트(제목,설명,태그,도구) 검색..."
                 className="w-[200px] pl-8 md:w-[300px] lg:w-[400px]"
+                value={search}
+                onChange={((e) => setSearch(e.target.value)) as ChangeEventHandler<HTMLInputElement>}
               />
             </div>
-            <Button>Upload Work</Button>
+            <Button>작업 업로드</Button>
             <UserNav />
           </div>
         </div>
@@ -44,33 +69,50 @@ export default function HomePage() {
             </div>
           </div>
 
-          <Tabs defaultValue="featured" className="w-full">
+          {/* 탭 컴포넌트 - 기본값은 '추천'으로 설정 */}
+          <Tabs defaultValue="recent" className="w-full">
             <TabsList className="mb-6 w-full md:w-auto">
-              <TabsTrigger value="featured" className="flex-1 md:flex-none">
-                Featured
-              </TabsTrigger>
+              {/* 최신 탭 */}
               <TabsTrigger value="recent" className="flex-1 md:flex-none">
-                Recent
+                최신
               </TabsTrigger>
+              {/* 인기 탭 */}
               <TabsTrigger value="popular" className="flex-1 md:flex-none">
-                Popular
+                인기
               </TabsTrigger>
+              {/* 팔로잉 탭 */}
               <TabsTrigger value="following" className="flex-1 md:flex-none">
-                Following
+                팔로잉
               </TabsTrigger>
             </TabsList>
 
             <TabsContent value="featured" className="mt-0">
-              <ProjectGrid projects={projects} />
+              {filteredProjects.length > 0 ? (
+                <ProjectGrid projects={filteredProjects} />
+              ) : (
+                <NoResults />
+              )}
             </TabsContent>
             <TabsContent value="recent" className="mt-0">
-              <ProjectGrid projects={projects} />
+              {filteredProjects.length > 0 ? (
+                <ProjectGrid projects={filteredProjects} />
+              ) : (
+                <NoResults />
+              )}
             </TabsContent>
             <TabsContent value="popular" className="mt-0">
-              <ProjectGrid projects={projects} />
+              {filteredProjects.length > 0 ? (
+                <ProjectGrid projects={filteredProjects} />
+              ) : (
+                <NoResults />
+              )}
             </TabsContent>
             <TabsContent value="following" className="mt-0">
-              <ProjectGrid projects={projects} />
+              {filteredProjects.length > 0 ? (
+                <ProjectGrid projects={filteredProjects} />
+              ) : (
+                <NoResults />
+              )}
             </TabsContent>
           </Tabs>
         </div>

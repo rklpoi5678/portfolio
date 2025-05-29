@@ -1,5 +1,4 @@
 import { Search } from "lucide-react"
-import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -24,7 +23,7 @@ export default function DesignersPage() {
                 className="w-[200px] pl-8 md:w-[300px] lg:w-[400px]"
               />
             </div>
-            <Button>Upload Work</Button>
+            <Button>업로드</Button>
             <UserNav />
           </div>
         </div>
@@ -33,7 +32,7 @@ export default function DesignersPage() {
         <div className="container px-4 py-6 sm:px-8 md:py-8">
           <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
             <div>
-              <h1 className="text-3xl font-bold tracking-tight">Designers</h1>
+              <h1 className="text-3xl font-bold tracking-tight">Fragments</h1>
               <p className="text-muted-foreground">나의 흔적이 지도가 되는 여정</p>
             </div>
             <div className="flex w-full items-center gap-2 md:w-auto">
@@ -46,69 +45,63 @@ export default function DesignersPage() {
 
           <div className="mb-8 flex flex-wrap gap-3">
             <Badge variant="outline" className="rounded-full px-4 py-1">
-              All
+              전체
             </Badge>
             <Badge variant="secondary" className="rounded-full px-4 py-1">
               UI/UX
             </Badge>
             <Badge variant="outline" className="rounded-full px-4 py-1">
-              Graphic Design
+              그래픽 디자인
             </Badge>
             <Badge variant="outline" className="rounded-full px-4 py-1">
-              Illustration
+              일러스트레이션
             </Badge>
             <Badge variant="outline" className="rounded-full px-4 py-1">
               3D
             </Badge>
             <Badge variant="outline" className="rounded-full px-4 py-1">
-              Motion
+              모션
             </Badge>
             <Badge variant="outline" className="rounded-full px-4 py-1">
-              Photography
+              사진
             </Badge>
             <Badge variant="outline" className="rounded-full px-4 py-1">
-              Development
+              개발
             </Badge>
             <Badge variant="outline" className="rounded-full px-4 py-1">
-              Marketing
+              마케팅
             </Badge>
             <Badge variant="outline" className="rounded-full px-4 py-1">
               PR
             </Badge>
             <Badge variant="outline" className="rounded-full px-4 py-1">
-              Business
+              비즈니스
             </Badge>
             <Badge variant="outline" className="rounded-full px-4 py-1">
-              Management
+              매니지먼트
             </Badge>
           </div>
 
-          <Tabs defaultValue="recommended" className="w-full">
+          <Tabs defaultValue="recent" className="w-full">
             <TabsList className="mb-6 w-full md:w-auto">
-              <TabsTrigger value="recommended" className="flex-1 md:flex-none">
-                Recommended
+              <TabsTrigger value="recent" className="flex-1 md:flex-none">
+                최신
               </TabsTrigger>
               <TabsTrigger value="trending" className="flex-1 md:flex-none">
-                Trending
+                인기
               </TabsTrigger>
-              <TabsTrigger value="most-followed" className="flex-1 md:flex-none">
-                Most Followed
-              </TabsTrigger>
-              <TabsTrigger value="new" className="flex-1 md:flex-none">
-                New
+              <TabsTrigger value="old" className="flex-1 md:flex-none">
+                오래된
               </TabsTrigger>
             </TabsList>
 
-            <TabsContent value="recommended" className="mt-0">
+            <TabsContent value="recent" className="mt-0">
               <DesignerGrid />
             </TabsContent>
             <TabsContent value="trending" className="mt-0">
               <DesignerGrid />
             </TabsContent>
-            <TabsContent value="most-followed" className="mt-0">
-              <DesignerGrid />
-            </TabsContent>
-            <TabsContent value="new" className="mt-0">
+            <TabsContent value="old" className="mt-0">
               <DesignerGrid />
             </TabsContent>
           </Tabs>
@@ -116,18 +109,7 @@ export default function DesignersPage() {
       </main>
       <footer className="border-t py-6">
         <div className="container flex flex-col items-center justify-between gap-4 px-4 text-center md:flex-row md:text-left">
-          <p className="text-sm text-muted-foreground">© 2024 DesignGallery. All rights reserved.</p>
-          <div className="flex gap-4 text-sm text-muted-foreground">
-            <Link href="#" className="hover:underline">
-              Terms
-            </Link>
-            <Link href="#" className="hover:underline">
-              Privacy
-            </Link>
-            <Link href="#" className="hover:underline">
-              Help
-            </Link>
-          </div>
+          <p className="text-sm text-muted-foreground">© 2024 KLogBook. Copyleft.</p>
         </div>
       </footer>
     </div>

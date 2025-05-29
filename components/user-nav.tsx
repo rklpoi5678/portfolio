@@ -33,33 +33,33 @@ export function UserNav() {
         <DropdownMenuContent className="w-56" align="end" forceMount>
           <DropdownMenuLabel className="font-normal">
             <div className="flex flex-col space-y-1">
-              <p className="text-sm font-medium leading-none">Jane Doe</p>
-              <p className="text-xs leading-none text-muted-foreground">jane.doe@example.com</p>
+              <p className="text-sm font-medium leading-none">김윤기</p>
+              <p className="text-xs leading-none text-muted-foreground">mataos@zohomail.com</p>
             </div>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem>
               <Link href="#" className="flex w-full items-center">
-                Profile
+                프로필
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Link href="#" className="flex w-full items-center">
-                Work
+                작업
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Link href="#" className="flex w-full items-center">
                 <Settings className="mr-2 h-4 w-4" />
-                <span>Settings</span>
+                <span>설정</span>
               </Link>
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
             <LogOut className="mr-2 h-4 w-4" />
-            <span>Log out</span>
+            <span>로그아웃</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

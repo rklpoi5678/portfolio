@@ -124,7 +124,7 @@ export default function DesignerProfilePage({ params }: { params: { id: string }
         <div className="container flex h-16 items-center px-4 sm:px-8">
           <MainNav />
           <div className="ml-auto flex items-center space-x-4">
-            <Button>Upload Work</Button>
+            <Button>업로드</Button>
             <UserNav />
           </div>
         </div>
@@ -145,7 +145,7 @@ export default function DesignerProfilePage({ params }: { params: { id: string }
               <Button variant="ghost" size="sm" className="mb-4 text-white" asChild>
                 <Link href="/designers">
                   <ArrowLeft className="mr-2 h-4 w-4" />
-                  Back to Designers
+                  뒤로가기
                 </Link>
               </Button>
             </div>

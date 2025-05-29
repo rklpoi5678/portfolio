@@ -1,5 +1,4 @@
 import { ArrowLeft, Heart, MessageSquare, Share2, Eye } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { projects } from "@/types/project"
@@ -11,12 +10,12 @@ import { MainNav } from "@/components/main-nav"
 import { UserNav } from "@/components/user-nav"
 import { ProjectComments } from "@/components/project-comments"
 import { RelatedProjects } from "@/components/related-projects"
-import { Badge } from "@/components/ui/badge"
 
 interface ProjectPageProps {
   params: {
     id: string
   }
+  
 }
 
 export default function ProjectPage({ params }: ProjectPageProps) {
@@ -32,7 +31,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         <div className="container flex h-16 items-center px-4 sm:px-8">
           <MainNav />
           <div className="ml-auto flex items-center space-x-4">
-            <Button>Upload Work</Button>
+            <Button>업로드</Button>
             <UserNav />
           </div>
         </div>
@@ -43,7 +42,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             <Button variant="ghost" size="sm" asChild>
               <Link href="/" className="flex items-center gap-1">
                 <ArrowLeft className="h-4 w-4" />
-                Back to gallery
+                뒤로가기
               </Link>
             </Button>
           </div>
@@ -88,7 +87,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 </div>
               </div>
               <div className="mt-8">
-                <h2 className="text-xl font-semibold">About this project</h2>
+                <h2 className="text-xl font-semibold">프로젝트 정보</h2>
                 <p className="mt-2 text-muted-foreground whitespace-pre-line">{project.description}</p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
@@ -158,16 +157,34 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   ))}
                   <div className="flex justify-between items-start gap-2">
                     <span className="text-muted-foreground flex-shrink-0">게시일</span>
-                    <span className="text-right min-w-0">{project.createdAt}</span>
+                    <span className="text-right min-w-0">
+                      {project.createdAt
+                        ? new Date(project.createdAt).toLocaleDateString("ko-KR", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          })
+                        : "알 수 없음"}
+                    </span>
                   </div>
-                  <div className="flex justify-between items-start gap-2">
-                    <span className="text-muted-foreground flex-shrink-0">Tools</span>
-                    <span className="text-right min-w-0 break-words">{project.tools?.join(', ')}</span>
-                  </div>
-                  <div className="flex justify-between items-start gap-2">
+                  {project.tools && project.tools.length > 0 && (
+                    <div className="flex justify-between items-start gap-2">
+                      <span className="text-muted-foreground flex-shrink-0">Tools</span>
+                      <span className="text-right min-w-0 break-words">
+                        {project.tools.map((tool, idx) => (
+                          <span key={tool}>
+                            {tool}
+                            {idx < (project.tools?.length || 0) - 1 && ', '}
+                          </span>
+                        ))}
+                      </span>
+                    </div>
+                  )}
+                  {/* 추후 라이선스 있는것만 추가 */}
+                  {/* <div className="flex justify-between items-start gap-2">
                     <span className="text-muted-foreground flex-shrink-0">License</span>
                     <span className="text-right min-w-0">All Rights Reserved</span>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <RelatedProjects />
@@ -177,7 +194,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       </main>
       <footer className="border-t py-6">
         <div className="container flex flex-col items-center justify-between gap-4 px-4 text-center md:flex-row md:text-left">
-          <p className="text-sm text-muted-foreground">© 2024 DesignGallery. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground">© 2024 KLogBook. Copyleft.</p>
           <div className="flex gap-4 text-sm text-muted-foreground">
             <Link href="#" className="hover:underline">
               Terms
