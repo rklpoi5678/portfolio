@@ -20,8 +20,9 @@ const NoResults = () => (
 
 export default function HomePage() {
   const [search, setSearch] = useState("")
+  const [currentTab, setCurrnetTab] = useState("recent")
 
-  const filteredProjects = useMemo(() => {
+  const searchfilteredProjects = useMemo(() => {
     return projects.filter((project) => {
       const searchLower = search.toLowerCase()
       return (
@@ -31,7 +32,29 @@ export default function HomePage() {
         project.tools?.some(tool => tool.toLowerCase().includes(searchLower))
       )
     })
-  }, [search, projects])
+  }, [search])
+
+  //탭별 프로젝트 필터링
+  const filteredProjects = useMemo(()=>{
+    const filtered = searchfilteredProjects
+
+    switch (currentTab) {
+      case "recent":
+        //최신순 정렬 (createdAt기준)
+        return [...filtered].sort((a,b) => new Date(b.createdAt).getTime() - new Date (a.createdAt).getTime())
+      
+      case "popular":
+        // 인기순 정렬 (likes + views의 합 기준)
+        return [...filtered].sort(
+          (a, b) =>
+            (Number(b.stats.likes) + Number(b.stats.views)) -
+            (Number(a.stats.likes) + Number(a.stats.views))
+        )
+      
+      case "following":
+        return [...filtered].sort((a,b) => Number(b.creator.followers) - Number(a.creator.followers))
+    }
+  },[searchfilteredProjects, currentTab])
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -87,29 +110,29 @@ export default function HomePage() {
             </TabsList>
 
             <TabsContent value="featured" className="mt-0">
-              {filteredProjects.length > 0 ? (
-                <ProjectGrid projects={filteredProjects} />
+              {searchfilteredProjects.length > 0 ? (
+                <ProjectGrid projects={searchfilteredProjects} />
               ) : (
                 <NoResults />
               )}
             </TabsContent>
             <TabsContent value="recent" className="mt-0">
-              {filteredProjects.length > 0 ? (
-                <ProjectGrid projects={filteredProjects} />
+              {searchfilteredProjects.length > 0 ? (
+                <ProjectGrid projects={searchfilteredProjects} />
               ) : (
                 <NoResults />
               )}
             </TabsContent>
             <TabsContent value="popular" className="mt-0">
-              {filteredProjects.length > 0 ? (
-                <ProjectGrid projects={filteredProjects} />
+              {searchfilteredProjects.length > 0 ? (
+                <ProjectGrid projects={searchfilteredProjects} />
               ) : (
                 <NoResults />
               )}
             </TabsContent>
             <TabsContent value="following" className="mt-0">
-              {filteredProjects.length > 0 ? (
-                <ProjectGrid projects={filteredProjects} />
+              {searchfilteredProjects.length > 0 ? (
+                <ProjectGrid projects={searchfilteredProjects} />
               ) : (
                 <NoResults />
               )}

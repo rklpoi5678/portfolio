@@ -13,13 +13,13 @@ import { RelatedProjects } from "@/components/related-projects"
 
 interface ProjectPageProps {
   params: {
-    id: string
+    id: number
   }
   
 }
 
 export default function ProjectPage({ params }: ProjectPageProps) {
-  const project = projects.find((p) => p.id === params.id)
+  const project = projects.find((p) => p.id === Number(params.id))
 
   if (!project) {
     notFound()
