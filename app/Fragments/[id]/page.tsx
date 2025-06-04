@@ -1,122 +1,20 @@
-import { ArrowLeft, Mail, MapPin, ExternalLink, Share2 } from "lucide-react"
+'use client'
+import { ArrowLeft, Mail, MapPin, ExternalLink, Share2, Youtube, FileText, Calendar, Eye, Clock, Play, Tag } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { MainNav } from "@/components/main-nav"
 import { UserNav } from "@/components/user-nav"
+import { fragments } from "@/types/fragments"
+import { Card, CardContent } from "@/components/ui/card"
 
-// Sample designer data - in a real app, this would come from an API or database
-const designers = [
-  {
-    id: "1",
-    name: "Alex Morgan",
-    avatar: "/diverse-person.png",
-    coverImage: "/designer-cover.png",
-    location: "San Francisco, CA",
-    specialty: "UI/UX Designer",
-    followers: "24.3k",
-    following: "512",
-    projects: 48,
-    bio: "Creating intuitive digital experiences with a focus on accessibility and user-centered design. I've worked with startups and Fortune 500 companies to design products that millions of people use daily.",
-    about:
-      "I'm a UI/UX designer with over 8 years of experience creating digital products for clients across various industries. My approach combines user research, strategic thinking, and visual design to create experiences that are both beautiful and functional. I'm passionate about accessibility and ensuring that the products I design work for everyone.",
-    featured: [
-      {
-        id: "1",
-        title: "Minimalist Brand Identity Design",
-        image: "/modern-brand-identity.png",
-        description: "A clean and modern brand identity design for a tech startup.",
-      },
-      {
-        id: "2",
-        title: "Mobile App UI Design",
-        image: "/mobile-app-ui-design.png",
-        description: "A comprehensive UI design for a fitness tracking mobile application.",
-      },
-      {
-        id: "3",
-        title: "E-commerce Website Redesign",
-        image: "/ecommerce-website-design.png",
-        description: "Complete redesign of an e-commerce platform focusing on conversion optimization.",
-      },
-      {
-        id: "4",
-        title: "Dashboard Interface",
-        image: "/general-dashboard-interface.png",
-        description: "Analytics dashboard design for a SaaS platform.",
-      },
-      {
-        id: "5",
-        title: "Banking App Concept",
-        image: "/placeholder.svg?key=xcbr8",
-        description: "Modern mobile banking application concept with focus on simplicity.",
-      },
-      {
-        id: "6",
-        title: "Travel Platform Redesign",
-        image: "/placeholder.svg?key=i0xt6",
-        description: "User experience improvement for a travel booking platform.",
-      },
-    ],
-    skills: [
-      "UI Design",
-      "UX Research",
-      "Design Systems",
-      "Prototyping",
-      "Wireframing",
-      "User Testing",
-      "Figma",
-      "Adobe Creative Suite",
-    ],
-    experience: [
-      {
-        company: "DesignCraft",
-        role: "Senior UI/UX Designer",
-        period: "2020 - Present",
-        description: "Leading design for enterprise SaaS products and mentoring junior designers.",
-      },
-      {
-        company: "TechVision",
-        role: "Product Designer",
-        period: "2017 - 2020",
-        description: "Designed user interfaces for mobile applications and conducted user research.",
-      },
-      {
-        company: "CreativeAgency",
-        role: "UI Designer",
-        period: "2015 - 2017",
-        description: "Created visual designs for websites and digital marketing campaigns.",
-      },
-    ],
-    education: [
-      {
-        institution: "Design Institute",
-        degree: "Master's in Interaction Design",
-        period: "2013 - 2015",
-      },
-      {
-        institution: "State University",
-        degree: "Bachelor's in Graphic Design",
-        period: "2009 - 2013",
-      },
-    ],
-    contact: {
-      email: "alex.morgan@example.com",
-      website: "www.alexmorgan.design",
-      linkedin: "linkedin.com/in/alexmorgan",
-      dribbble: "dribbble.com/alexmorgan",
-    },
-  },
-]
-
-export default function DesignerProfilePage({ params }: { params: { id: string } }) {
+export default function FragmentsDetailPage({ params }: { params: { id: string } }) {
   // In a real app, you would fetch the designer data based on the ID
-  const designer = designers.find((d) => d.id === params.id) || designers[0]
+  const designer = fragments.find((d) => d.id === params.id) || fragments[0]
+
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -166,233 +64,182 @@ export default function DesignerProfilePage({ params }: { params: { id: string }
                 <span>{designer.location}</span>
               </div>
             </div>
-            <div className="flex flex-wrap gap-2">
-              <Button>Follow</Button>
-              <Button variant="outline">
-                <Mail className="mr-2 h-4 w-4" />
-                Contact
-              </Button>
-              <Button variant="outline" size="icon">
-                <Share2 className="h-4 w-4" />
-              </Button>
-            </div>
           </div>
 
-          <div className="mt-6 flex flex-wrap justify-center gap-6 md:justify-start">
+          <div className="mt-6 mb-6 flex flex-wrap justify-center gap-6 md:justify-start">
             <div className="text-center">
-              <p className="text-xl font-bold">{designer.projects}</p>
-              <p className="text-sm text-muted-foreground">Projects</p>
+              <p className="text-xl font-bold">{designer.views}</p>
+              <p className="text-sm text-muted-foreground">조회수</p>
             </div>
             <div className="text-center">
               <p className="text-xl font-bold">{designer.followers}</p>
-              <p className="text-sm text-muted-foreground">Followers</p>
-            </div>
-            <div className="text-center">
-              <p className="text-xl font-bold">{designer.following}</p>
-              <p className="text-sm text-muted-foreground">Following</p>
+              <p className="text-sm text-muted-foreground">팔로워</p>
             </div>
           </div>
+          
+          <Separator/>
+          
+          {/* Starting Point */}
+          <div className="grid gap-8 lg:grid-cols-[2fr_1fr]">
+            {/* Main Content */}
+            <div>
+              {/* Content Header */}
+              <div className="mb-8">
+                <div className="mb-4 mt-5 flex items-center gap-2">
+                  {designer.is_video === true ? (
+                    <Badge className="bg-red-500 text-white">
+                      <Youtube className="mr-1 h-3 w-3"/>
+                        YouTube 영상
+                    </Badge>
+                  ) : (
+                    <Badge className="bg-blue-500 text-white">
+                      <FileText className="mr-1 h-3 w-3"/>
+                        YouTube 영상
+                    </Badge>
+                  )}
+                </div>
+              </div>
 
-          <Tabs defaultValue="portfolio" className="mt-8">
-            <TabsList className="w-full justify-start">
-              <TabsTrigger value="portfolio">Portfolio</TabsTrigger>
-              <TabsTrigger value="about">About</TabsTrigger>
-              <TabsTrigger value="resume">Resume</TabsTrigger>
-              <TabsTrigger value="contact">Contact</TabsTrigger>
-            </TabsList>
-            <TabsContent value="portfolio" className="mt-6">
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {designer.featured.map((project) => (
-                  <div key={project.id} className="group overflow-hidden rounded-lg border bg-card">
-                    <div className="aspect-video w-full overflow-hidden">
-                      <Image
-                        src={project.image || "/placeholder.svg"}
-                        alt={project.title}
-                        width={600}
-                        height={400}
-                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                    </div>
-                    <div className="p-4">
-                      <h3 className="font-medium">{project.title}</h3>
-                      <p className="mt-1 text-sm text-muted-foreground">{project.description}</p>
-                    </div>
-                  </div>
-                ))}
+              <h1 className="mb-4 text-3xl font-bold text-gray-800 md:text-4xl">{designer.name}</h1>
+              
+              <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
+                <div className="mb-3 flex items-center gap-1">
+                  <Calendar  className="h-4 w-4" />
+                  <span>{new Date(designer.publishDate).toLocaleDateString("ko-KR")}</span>
+                </div>
               </div>
-            </TabsContent>
-            <TabsContent value="about" className="mt-6 space-y-6">
-              <div>
-                <h2 className="text-xl font-semibold">About Me</h2>
-                <p className="mt-2 text-muted-foreground">{designer.about}</p>
+
+              {/* Image/Thumbnail */}
+              <div className="mb-8 overflow-hidden rounded-lg border-0 bg-white/70 shadow-lg backdrop-blur-sm">
+                <div className="relative aspect-video">
+                  <Image
+                    src={designer.thumbnail || "/placeholder.svg"}
+                    alt={designer.name}
+                    fill
+                    className="object-cover"
+                  />
+                  {designer.is_video === true && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                      <div className="rounded-full bg-red-500 p-4 shadow-lg">
+                        <Play className="h-8 w-8 text-white" />
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
-              <div>
-                <h2 className="text-xl font-semibold">Skills</h2>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {designer.skills.map((skill) => (
-                    <Badge key={skill} variant="secondary">
-                      {skill}
+              
+            {/* Content Description */}
+            <Card className="mb-8 border-0 bg-white/70 shadow-md backdrop-blur-sm">
+              <CardContent className="p-6">
+                <h2 className="mb-4 text-xl font-semibold text-gray-800">{designer.is_video ? "영상 소개" : "포스트 소개"}</h2>
+                <p className="leading-relaxed text-gray-700">{designer.description}</p>
+              </CardContent>
+            </Card>
+            
+            {/* Tags */}
+            <Card className="mb-8 border-0 bg-white/70 shadow-md backdrop-blur-sm">
+              <CardContent className="p-6">
+                <h3 className="mb-3 flex items-center text-lg font-semibold text-gray-800">
+                  <Tag className="mr-2 h-5 w-5" />
+                  태그
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {designer.tags.map((tag) => (
+                    <Badge key={tag} variant="secondary" className="hover:bg-orange-100">
+                      {tag}
                     </Badge>
                   ))}
                 </div>
-              </div>
-            </TabsContent>
-            <TabsContent value="resume" className="mt-6 space-y-6">
-              <div>
-                <h2 className="text-xl font-semibold">Experience</h2>
-                <div className="mt-4 space-y-4">
-                  {designer.experience.map((exp, index) => (
-                    <div key={index} className="space-y-1">
-                      <div className="flex items-center justify-between">
-                        <h3 className="font-medium">{exp.role}</h3>
-                        <span className="text-sm text-muted-foreground">{exp.period}</span>
-                      </div>
-                      <p className="text-muted-foreground">{exp.company}</p>
-                      <p className="text-sm">{exp.description}</p>
-                      {index < designer.experience.length - 1 && <Separator className="mt-4" />}
+              </CardContent>
+            </Card>
+            
+            {/* Action Button */}
+            <div className="text-center">
+              <Button
+                size="lg"
+                className={designer.is_video ? "bg-red-500 hover:bg-red-600" : "bg-blue-500 hover:bg-blue-600"}
+                asChild
+              >
+                <Link href={designer.url} target="_blank" rel="noopener noreferrer">
+                  {designer.is_video ? (
+                    <>
+                      <Youtube className="mr-2 h-5 w-5" />
+                      YouTube에서 영상 보기
+                    </>
+                  ) : (
+                    <>
+                      <ExternalLink className="mr-2 h-5 w-5" />
+                      블로그에서 전체 글 읽기
+                    </>
+                  )}
+                </Link>
+              </Button>
+            </div>
+            </div>
+            
+            {/* Sidebar */}
+            <div className="space-y-8">
+              {/* Content Info */}
+              <Card className="border-0 bg-white/70 shadow-md backdrop-blur-sm">
+                <CardContent className="p-6">
+                  <h3 className="mb-4 text-lg font-semibold text-gray-800">콘텐츠 정보</h3>
+                  <Separator className="mb-4" />
+                  <dl className="space-y-3">
+                    <div>
+                      <dt className="text-sm font-medium text-gray-600">유형</dt>
+                      <dd className="text-gray-800">{designer.is_video ? "YouTube 영상" : "블로그 포스트"}</dd>
                     </div>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <h2 className="text-xl font-semibold">Education</h2>
-                <div className="mt-4 space-y-4">
-                  {designer.education.map((edu, index) => (
-                    <div key={index} className="space-y-1">
-                      <div className="flex items-center justify-between">
-                        <h3 className="font-medium">{edu.degree}</h3>
-                        <span className="text-sm text-muted-foreground">{edu.period}</span>
-                      </div>
-                      <p className="text-muted-foreground">{edu.institution}</p>
-                      {index < designer.education.length - 1 && <Separator className="mt-4" />}
+                    <div>
+                      <dt className="text-sm font-medium text-gray-600">게시일</dt>
+                      <dd className="text-gray-800">{new Date(designer.publishDate).toLocaleDateString("ko-KR")}</dd>
                     </div>
-                  ))}
-                </div>
-              </div>
-            </TabsContent>
-            <TabsContent value="contact" className="mt-6 space-y-4">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="rounded-lg border p-4">
-                  <div className="flex items-center gap-2">
-                    <Mail className="h-5 w-5 text-muted-foreground" />
-                    <h3 className="font-medium">Email</h3>
-                  </div>
-                  <p className="mt-2 text-muted-foreground">{designer.contact.email}</p>
-                </div>
-                <div className="rounded-lg border p-4">
-                  <div className="flex items-center gap-2">
-                    <ExternalLink className="h-5 w-5 text-muted-foreground" />
-                    <h3 className="font-medium">Website</h3>
-                  </div>
-                  <a
-                    href={`https://${designer.contact.website}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-2 block text-muted-foreground hover:underline"
-                  >
-                    {designer.contact.website}
-                  </a>
-                </div>
-                <div className="rounded-lg border p-4">
-                  <div className="flex items-center gap-2">
-                    <ExternalLink className="h-5 w-5 text-muted-foreground" />
-                    <h3 className="font-medium">LinkedIn</h3>
-                  </div>
-                  <a
-                    href={`https://${designer.contact.linkedin}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-2 block text-muted-foreground hover:underline"
-                  >
-                    {designer.contact.linkedin}
-                  </a>
-                </div>
-                <div className="rounded-lg border p-4">
-                  <div className="flex items-center gap-2">
-                    <ExternalLink className="h-5 w-5 text-muted-foreground" />
-                    <h3 className="font-medium">Dribbble</h3>
-                  </div>
-                  <a
-                    href={`https://${designer.contact.dribbble}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-2 block text-muted-foreground hover:underline"
-                  >
-                    {designer.contact.dribbble}
-                  </a>
-                </div>
-              </div>
-              <div className="rounded-lg border p-4">
-                <h3 className="mb-2 font-medium">Send a Message</h3>
-                <form className="space-y-4">
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div className="space-y-2">
-                      <label htmlFor="name" className="text-sm font-medium">
-                        Name
-                      </label>
-                      <input
-                        id="name"
-                        type="text"
-                        className="w-full rounded-md border border-input bg-background px-3 py-2"
-                        placeholder="Your name"
-                      />
+                    <div>
+                      <dt className="text-sm font-medium text-gray-600">조회수</dt>
+                      <dd className="text-gray-800">{designer.views}</dd>
                     </div>
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="text-sm font-medium">
-                        Email
-                      </label>
-                      <input
-                        id="email"
-                        type="email"
-                        className="w-full rounded-md border border-input bg-background px-3 py-2"
-                        placeholder="Your email"
-                      />
-                    </div>
-                  </div>
+                  </dl>
+                </CardContent>
+              </Card>
+              
+              {/* Share Section */}
+              <Card className="border-0 bg-white/70 shadow-md backdrop-blur-sm">
+                <CardContent className="p-6">
+                  <h3 className="mb-4 text-lg font-semibold text-gray-800">공유하기</h3>
                   <div className="space-y-2">
-                    <label htmlFor="subject" className="text-sm font-medium">
-                      Subject
-                    </label>
-                    <input
-                      id="subject"
-                      type="text"
-                      className="w-full rounded-md border border-input bg-background px-3 py-2"
-                      placeholder="Message subject"
-                    />
+                    <Button variant="outline" className="w-full justify-start" asChild>
+                      <Link href={designer.url} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="mr-2 h-4 w-4" />
+                        원본 링크 열기
+                      </Link>
+                    </Button>
+                    <Button
+                      variant="outline"
+                      className="w-full justify-start"
+                      onClick={() => {
+                        if (navigator.share) {
+                          navigator.share({
+                            title: designer.name,
+                            text: designer.description,
+                            url: window.location.href,
+                          })
+                        } else {
+                          navigator.clipboard.writeText(window.location.href)
+                          alert("링크가 클립보드에 복사되었습니다!")
+                        }
+                      }}
+                    >
+                      <ExternalLink className="mr-2 h-4 w-4" />이 페이지 공유
+                    </Button>
                   </div>
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-medium">
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      className="min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2"
-                      placeholder="Your message"
-                    />
-                  </div>
-                  <Button type="submit" className="w-full sm:w-auto">
-                    Send Message
-                  </Button>
-                </form>
-              </div>
-            </TabsContent>
-          </Tabs>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </div>
       </main>
       <footer className="border-t py-6">
         <div className="container flex flex-col items-center justify-between gap-4 px-4 text-center md:flex-row md:text-left">
           <p className="text-sm text-muted-foreground">© 2024 DesignGallery. All rights reserved.</p>
-          <div className="flex gap-4 text-sm text-muted-foreground">
-            <Link href="#" className="hover:underline">
-              Terms
-            </Link>
-            <Link href="#" className="hover:underline">
-              Privacy
-            </Link>
-            <Link href="#" className="hover:underline">
-              Help
-            </Link>
-          </div>
         </div>
       </footer>
     </div>

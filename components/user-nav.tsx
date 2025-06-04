@@ -19,7 +19,7 @@ export function UserNav() {
       <Button variant="ghost" size="icon" className="relative">
         <Bell className="h-5 w-5" />
         <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-primary"></span>
-        <span className="sr-only">Notifications</span>
+        <span className="sr-only">알림창</span>
       </Button>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -42,11 +42,6 @@ export function UserNav() {
             <DropdownMenuItem>
               <Link href="#" className="flex w-full items-center">
                 프로필
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link href="#" className="flex w-full items-center">
-                작업
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>

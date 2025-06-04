@@ -1,331 +1,343 @@
-import { Search, Briefcase, MapPin, Clock } from "lucide-react"
-import Link from "next/link"
+"use client"
 
+import { useState } from "react"
+import { Search, FileText, MapPin, Clock } from "lucide-react"
+import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Checkbox } from "@/components/ui/checkbox"
+import {
+  caseStudies,
+  caseStudyStats,
+  getAllCategories,
+  getAllDocumentTypes,
+  getAllTechStacks,
+} from "@/types/case-studies"
 import { MainNav } from "@/components/main-nav"
 import { UserNav } from "@/components/user-nav"
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-export default function JobsPage() {
+export default function CaseStudyPage() {
+  const [searchQuery, setSearchQuery] = useState("")
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+  const [selectedDocTypes, setSelectedDocTypes] = useState<string[]>([])
+  const [selectedTechStack, setSelectedTechStack] = useState<string[]>([])
+  const [sortBy, setSortBy] = useState("newest")
+
+  const categories = getAllCategories()
+  const documentTypes = getAllDocumentTypes()
+  const techStacks = getAllTechStacks()
+
+  // Filter and search logic
+  const filteredCaseStudies = caseStudies.filter((cs) => {
+    const matchesSearch =
+      searchQuery === "" ||
+      cs.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      cs.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      cs.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase()))
+
+    const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(cs.category)
+    const matchesDocType = selectedDocTypes.length === 0 || selectedDocTypes.includes(cs.documentType)
+    const matchesTechStack =
+      selectedTechStack.length === 0 || selectedTechStack.some((tech) => cs.techStack.includes(tech))
+
+    return matchesSearch && matchesCategory && matchesDocType && matchesTechStack
+  })
+
+  // Sort logic
+  const sortedCaseStudies = [...filteredCaseStudies].sort((a, b) => {
+    switch (sortBy) {
+      case "newest":
+        return new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime()
+      case "oldest":
+        return new Date(a.publishDate).getTime() - new Date(b.publishDate).getTime()
+      case "title":
+        return a.title.localeCompare(b.title)
+      default:
+        return 0
+    }
+  })
+
+  const handleCategoryChange = (category: string, checked: boolean) => {
+    if (checked) {
+      setSelectedCategories([...selectedCategories, category])
+    } else {
+      setSelectedCategories(selectedCategories.filter((c) => c !== category))
+    }
+  }
+
+  const handleDocTypeChange = (docType: string, checked: boolean) => {
+    if (checked) {
+      setSelectedDocTypes([...selectedDocTypes, docType])
+    } else {
+      setSelectedDocTypes(selectedDocTypes.filter((d) => d !== docType))
+    }
+  }
+
+  const handleTechStackChange = (tech: string, checked: boolean) => {
+    if (checked) {
+      setSelectedTechStack([...selectedTechStack, tech])
+    } else {
+      setSelectedTechStack(selectedTechStack.filter((t) => t !== tech))
+    }
+  }
+
+  const clearAllFilters = () => {
+    setSelectedCategories([])
+    setSelectedDocTypes([])
+    setSelectedTechStack([])
+    setSearchQuery("")
+  }
+
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-50 w-full border-b bg-background">
-        <div className="container flex h-16 items-center px-4 sm:px-8">
-          <MainNav />
-          <div className="ml-auto flex items-center space-x-4">
-            <div className="relative hidden md:flex">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input type="search" placeholder="Search jobs..." className="w-[200px] pl-8 md:w-[300px] lg:w-[400px]" />
+        <header className="sticky top-0 z-50 w-full border-b bg-background">
+            <div className="container flex h-16 items-center px-4 sm:px-8">
+              <MainNav />
+              <div className="ml-auto flex items-center space-x-4">
+                <div className="relative hidden md:flex">
+                  <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                  <Input type="search" placeholder="Search jobs..." className="w-[200px] pl-8 md:w-[300px] lg:w-[400px]" />
+                </div>
+                <Button>포스트</Button>
+                <UserNav />
+              </div>
             </div>
-            <Button>포스트</Button>
-            <UserNav />
-          </div>
+        </header>
+      <div className="container px-4 py-6 sm:px-8 md:py-8">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-800">Case Study</h1>
+          <p className="max-w-3xl text-lg text-gray-600">
+            "모든 프로젝트는 하나의 문제에서 시작됐습니다. 이 Case Study는 그 문제를 어떻게 정의했고, 어떤 방식으로
+            접근했으며, 결과적으로 어떤 선택을 했는지에 대한 기록입니다."
+          </p>
         </div>
-      </header>
-      <main className="flex-1">
-        <div className="container px-4 py-6 sm:px-8 md:py-8">
-          <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
-            <div>
-              <h1 className="text-3xl font-bold tracking-tight">Case Study</h1>
-              <p className="text-muted-foreground">"모든 프로젝트는 하나의 문제에서 시작됐습니다.
-이 Case Study는 그 문제를 어떻게 정의했고, 어떤 방식으로 접근했으며, 결과적으로 어떤 선택을 했는지에 대한 기록입니다."</p>
-            </div>
-            <div className="flex w-full items-center gap-2 md:w-auto">
-              <div className="relative md:hidden">
-                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                <Input type="search" placeholder="Search jobs..." className="w-full pl-8" />
-              </div>
-            </div>
+
+        {/* Stats Cards */}
+        <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <Card className="border-0 bg-white/70 shadow-md backdrop-blur-sm">
+            <CardContent className="p-4 text-center">
+              <div className="text-2xl font-bold text-blue-600">{caseStudyStats.totalCaseStudies}</div>
+              <div className="text-sm text-gray-600">총 케이스 스터디</div>
+            </CardContent>
+          </Card>
+          <Card className="border-0 bg-white/70 shadow-md backdrop-blur-sm">
+            <CardContent className="p-4 text-center">
+              <div className="text-2xl font-bold text-green-600">{caseStudyStats.completedProjects}</div>
+              <div className="text-sm text-gray-600">완료된 프로젝트</div>
+            </CardContent>
+          </Card>
+          <Card className="border-0 bg-white/70 shadow-md backdrop-blur-sm">
+            <CardContent className="p-4 text-center">
+              <div className="text-2xl font-bold text-orange-600">{caseStudyStats.inProgressProjects}</div>
+              <div className="text-sm text-gray-600">진행 중인 프로젝트</div>
+            </CardContent>
+          </Card>
+          <Card className="border-0 bg-white/70 shadow-md backdrop-blur-sm">
+            <CardContent className="p-4 text-center">
+              <div className="text-2xl font-bold text-purple-600">{caseStudyStats.totalDocuments}</div>
+              <div className="text-sm text-gray-600">문서 자료</div>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="grid gap-8 lg:grid-cols-[280px_1fr]">
+          {/* Left Sidebar - Filters */}
+          <div className="space-y-6">
+            <Card className="border-0 bg-white/70 shadow-md backdrop-blur-sm">
+              <CardHeader className="pb-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-semibold text-gray-800">필터</h3>
+                  <Button variant="ghost" size="sm" onClick={clearAllFilters}>
+                    초기화
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {/* Search */}
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-gray-700">검색</label>
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+                    <Input
+                      type="search"
+                      placeholder="케이스 스터디 검색..."
+                      className="pl-9"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                {/* Document Types */}
+                <div>
+                  <h4 className="mb-3 text-sm font-medium text-gray-700">문서 유형</h4>
+                  <div className="space-y-2">
+                    {documentTypes.map((docType) => (
+                      <div key={docType} className="flex items-center space-x-2">
+                        <Checkbox
+                          id={`doc-${docType}`}
+                          checked={selectedDocTypes.includes(docType)}
+                          onCheckedChange={(checked) => handleDocTypeChange(docType, checked as boolean)}
+                        />
+                        <label htmlFor={`doc-${docType}`} className="text-sm text-gray-600">
+                          {docType}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Categories */}
+                <div>
+                  <h4 className="mb-3 text-sm font-medium text-gray-700">카테고리</h4>
+                  <div className="space-y-2">
+                    {categories.map((category) => (
+                      <div key={category} className="flex items-center space-x-2">
+                        <Checkbox
+                          id={`cat-${category}`}
+                          checked={selectedCategories.includes(category)}
+                          onCheckedChange={(checked) => handleCategoryChange(category, checked as boolean)}
+                        />
+                        <label htmlFor={`cat-${category}`} className="text-sm text-gray-600">
+                          {category}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Tech Stack */}
+                <div>
+                  <h4 className="mb-3 text-sm font-medium text-gray-700">기술 스택</h4>
+                  <div className="space-y-2">
+                    {techStacks.slice(0, 8).map((tech) => (
+                      <div key={tech} className="flex items-center space-x-2">
+                        <Checkbox
+                          id={`tech-${tech}`}
+                          checked={selectedTechStack.includes(tech)}
+                          onCheckedChange={(checked) => handleTechStackChange(tech, checked as boolean)}
+                        />
+                        <label htmlFor={`tech-${tech}`} className="text-sm text-gray-600">
+                          {tech}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
-          <div className="mb-8 grid gap-4 md:grid-cols-[250px_1fr]">
-            <div className="space-y-6 rounded-lg border p-4">
-              <div>
-                <h3 className="mb-2 font-medium">문서 유형</h3>
-                <div className="space-y-2">
-                  <div className="flex items-center">
-                    <input type="checkbox" id="pdf" className="mr-2" />
-                    <label htmlFor="pdf" className="text-sm">
-                      PDF
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input type="checkbox" id="hwp" className="mr-2" />
-                    <label htmlFor="hwp" className="text-sm">
-                      HWP
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input type="checkbox" id="ppt" className="mr-2" />
-                    <label htmlFor="ppt" className="text-sm">
-                      PPT
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input type="checkbox" id="doc" className="mr-2" />
-                    <label htmlFor="doc" className="text-sm">
-                      DOC
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="mb-2 font-medium">카테고리</h3>
-                <div className="space-y-2">
-                  <div className="flex items-center">
-                    <input type="checkbox" id="web" className="mr-2" />
-                    <label htmlFor="web" className="text-sm">
-                      웹 개발
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input type="checkbox" id="mobile" className="mr-2" />
-                    <label htmlFor="mobile" className="text-sm">
-                      모바일 앱
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input type="checkbox" id="ai" className="mr-2" />
-                    <label htmlFor="ai" className="text-sm">
-                      AI/ML
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input type="checkbox" id="marketing" className="mr-2" />
-                    <label htmlFor="marketing" className="text-sm">
-                      마케팅
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input type="checkbox" id="repair" className="mr-2" />
-                    <label htmlFor="repair" className="text-sm">
-                      정비
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input type="checkbox" id="server" className="mr-2" />
-                    <label htmlFor="server" className="text-sm">
-                      서버
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="mb-2 font-medium">기술 스택</h3>
-                <div className="space-y-2">
-                  <div className="flex items-center">
-                    <input type="checkbox" id="react" className="mr-2" />
-                    <label htmlFor="react" className="text-sm">
-                      React
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input type="checkbox" id="react-native" className="mr-2" />
-                    <label htmlFor="react-native" className="text-sm">
-                      React Native
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input type="checkbox" id="next" className="mr-2" />
-                    <label htmlFor="next" className="text-sm">
-                      Next.js
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input type="checkbox" id="python" className="mr-2" />
-                    <label htmlFor="python" className="text-sm">
-                      Python
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input type="checkbox" id="flutter" className="mr-2" />
-                    <label htmlFor="flutter" className="text-sm">
-                      Flutter
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <Button className="w-full">필터 적용</Button>
+          {/* Main Content */}
+          <div className="space-y-6">
+            {/* Sort and Results Count */}
+            <div className="flex items-center justify-between">
+              <p className="text-sm text-gray-600">{sortedCaseStudies.length}개의 케이스 스터디를 찾았습니다</p>
+              <Select value={sortBy} onValueChange={setSortBy}>
+                <SelectTrigger className="w-[180px] bg-white/70 backdrop-blur-sm">
+                  <SelectValue placeholder="정렬 기준" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="newest">최신순</SelectItem>
+                  <SelectItem value="oldest">오래된순</SelectItem>
+                  <SelectItem value="title">제목순</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
 
+            {/* Case Study Cards */}
             <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <p className="text-sm text-muted-foreground">Showing 152 jobs</p>
-                <div className="flex items-center gap-2">
-                  <Select defaultValue="newest">
-                    <SelectTrigger className="w-[180px]">
-                      <SelectValue placeholder="Sort by" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="newest">Newest First</SelectItem>
-                      <SelectItem value="relevant">Most Relevant</SelectItem>
-                      <SelectItem value="salary">Highest Salary</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
+              {sortedCaseStudies.map((caseStudy) => (
+                <Link href={`/casestudy/${caseStudy.id}`} key={caseStudy.id}>
+                  <Card className="group overflow-hidden border-0 bg-white/70 shadow-md backdrop-blur-sm transition-all hover:shadow-lg">
+                    <div className="grid gap-6 p-6 md:grid-cols-[200px_1fr]">
+                      {/* Thumbnail */}
+                      <div className="aspect-video overflow-hidden rounded-lg md:aspect-[4/3]">
+                        <Image
+                          src={caseStudy.thumbnail || "/placeholder.svg"}
+                          alt={caseStudy.title}
+                          width={200}
+                          height={150}
+                          className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                        />
+                      </div>
 
-              <div className="space-y-4">
-                {jobs.map((job) => (
-                  <Link href={`/jobs/${job.id}`} key={job.id}>
-                    <Card className="hover:border-primary/50 hover:shadow-sm">
-                      <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
-                        <div className="flex items-center gap-3">
-                          <Avatar className="h-10 w-10">
-                            <AvatarImage src={job.company.logo || "/placeholder.svg"} alt={job.company.name} />
-                            <AvatarFallback>{job.company.name.charAt(0)}</AvatarFallback>
-                          </Avatar>
-                          <div>
-                            <h3 className="font-semibold">{job.title}</h3>
-                            <p className="text-sm text-muted-foreground">{job.company.name}</p>
+                      {/* Content */}
+                      <div className="space-y-4">
+                        <div>
+                          <div className="mb-2 flex items-center gap-2">
+                            <Badge variant="outline" className="text-xs">
+                              {caseStudy.documentType}
+                            </Badge>
+                            <Badge
+                              variant={caseStudy.status === "Completed" ? "default" : "secondary"}
+                              className="text-xs"
+                            >
+                              {caseStudy.status}
+                            </Badge>
+                            <Badge variant="secondary" className="text-xs">
+                              {caseStudy.category}
+                            </Badge>
                           </div>
+                          <h3 className="text-xl font-semibold text-gray-800 group-hover:text-blue-600">
+                            {caseStudy.title}
+                          </h3>
+                          <p className="text-sm font-medium text-blue-600">{caseStudy.subtitle}</p>
                         </div>
-                        <Badge variant={job.type === "Full-time" ? "default" : "outline"}>{job.type}</Badge>
-                      </CardHeader>
-                      <CardContent className="pb-2">
-                        <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted-foreground">
-                          <div className="flex items-center gap-1">
-                            <MapPin className="h-4 w-4" />
-                            <span>{job.location}</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Briefcase className="h-4 w-4" />
-                            <span>{job.level}</span>
-                          </div>
+
+                        <p className="line-clamp-2 text-gray-600">{caseStudy.description}</p>
+
+                        <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-500">
                           <div className="flex items-center gap-1">
                             <Clock className="h-4 w-4" />
-                            <span>{job.posted}</span>
+                            <span>{caseStudy.duration}</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <FileText className="h-4 w-4" />
+                            <span>{caseStudy.role}</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <MapPin className="h-4 w-4" />
+                            <span>{caseStudy.team} 팀</span>
                           </div>
                         </div>
-                        <p className="mt-2 line-clamp-2 text-sm">{job.description}</p>
-                      </CardContent>
-                      <CardFooter className="pt-2">
+
                         <div className="flex flex-wrap gap-2">
-                          {job.skills.map((skill) => (
-                            <Badge key={skill} variant="secondary" className="font-normal">
-                              {skill}
+                          {caseStudy.techStack.slice(0, 4).map((tech) => (
+                            <Badge key={tech} variant="secondary" className="text-xs">
+                              {tech}
                             </Badge>
                           ))}
+                          {caseStudy.techStack.length > 4 && (
+                            <Badge variant="secondary" className="text-xs">
+                              +{caseStudy.techStack.length - 4}
+                            </Badge>
+                          )}
                         </div>
-                      </CardFooter>
-                    </Card>
-                  </Link>
-                ))}
-              </div>
-
-              <div className="flex justify-center">
-                <Button variant="outline">Load More Jobs</Button>
-              </div>
+                      </div>
+                    </div>
+                  </Card>
+                </Link>
+              ))}
             </div>
+
+            {/* Load More Button */}
+            {sortedCaseStudies.length === 0 && (
+              <div className="py-12 text-center">
+                <p className="text-gray-500">검색 조건에 맞는 케이스 스터디가 없습니다.</p>
+                <Button variant="outline" className="mt-4" onClick={clearAllFilters}>
+                  필터 초기화
+                </Button>
+              </div>
+            )}
           </div>
         </div>
-      </main>
-      <footer className="border-t py-6">
-        <div className="container flex flex-col items-center justify-between gap-4 px-4 text-center md:flex-row md:text-left">
-          <p className="text-sm text-muted-foreground">© 2024 DesignGallery. All rights reserved.</p>
-          <div className="flex gap-4 text-sm text-muted-foreground">
-            <Link href="#" className="hover:underline">
-              Terms
-            </Link>
-            <Link href="#" className="hover:underline">
-              Privacy
-            </Link>
-            <Link href="#" className="hover:underline">
-              Help
-            </Link>
-          </div>
-        </div>
-      </footer>
+      </div>
     </div>
   )
 }
-
-const jobs = [
-  {
-    id: "1",
-    title: "Senior UI/UX Designer",
-    company: {
-      name: "Designify",
-      logo: "/diverse-group.png",
-    },
-    type: "Full-time",
-    location: "Remote",
-    level: "Senior Level",
-    salary: "$90k - $120k",
-    posted: "2 days ago",
-    description:
-      "We're looking for a Senior UI/UX Designer to join our team and help create exceptional user experiences for our products. You'll work closely with product managers, developers, and other designers.",
-    skills: ["Figma", "UI Design", "User Research", "Prototyping"],
-  },
-  {
-    id: "2",
-    title: "Product Designer",
-    company: {
-      name: "TechVision",
-      logo: "/diverse-group-two.png",
-    },
-    type: "Full-time",
-    location: "San Francisco, CA (Hybrid)",
-    level: "Mid Level",
-    salary: "$80k - $100k",
-    posted: "3 days ago",
-    description:
-      "Join our product design team to create intuitive and engaging experiences for our SaaS platform. You'll be involved in the entire product development lifecycle from research to implementation.",
-    skills: ["Product Design", "Design Systems", "Wireframing", "User Testing"],
-  },
-  {
-    id: "3",
-    title: "Graphic Designer",
-    company: {
-      name: "Creative Studio",
-      logo: "/diverse-group-outdoors.png",
-    },
-    type: "Contract",
-    location: "Remote",
-    level: "Mid Level",
-    salary: "$50 - $65/hour",
-    posted: "1 week ago",
-    description:
-      "We're seeking a talented Graphic Designer for a 6-month contract to help with our rebranding project. You'll create visual assets for both print and digital platforms.",
-    skills: ["Adobe Creative Suite", "Branding", "Typography", "Illustration"],
-  },
-  {
-    id: "4",
-    title: "Motion Designer",
-    company: {
-      name: "AnimateX",
-      logo: "/diverse-group-four.png",
-    },
-    type: "Full-time",
-    location: "New York, NY",
-    level: "Mid-Senior Level",
-    salary: "$85k - $110k",
-    posted: "5 days ago",
-    description:
-      "Create engaging motion graphics and animations for our clients' digital marketing campaigns. You'll work with a team of designers and marketers to bring static designs to life.",
-    skills: ["After Effects", "Cinema 4D", "Animation", "Storyboarding"],
-  },
-  {
-    id: "5",
-    title: "Junior UX Designer",
-    company: {
-      name: "StartupLabs",
-      logo: "/diverse-group-five.png",
-    },
-    type: "Full-time",
-    location: "Austin, TX (Hybrid)",
-    level: "Entry Level",
-    salary: "$60k - $75k",
-    posted: "1 day ago",
-    description:
-      "Great opportunity for a Junior UX Designer to join our growing team. You'll learn from experienced designers while contributing to real projects for our clients in the healthcare industry.",
-    skills: ["Wireframing", "User Research", "Figma", "UI Design"],
-  },
-]

@@ -82,7 +82,7 @@ export default function HomePage() {
           <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
             <div>
               <h1 className="text-3xl font-bold tracking-tight">Discover</h1>
-              <p className="text-muted-foreground">전제 진행중인 프로젝트를 확인해보세요</p>
+              <p className="max-w-3xl text-lg text-gray-600">전제 진행중인 프로젝트를 확인해보세요</p>
             </div>
             <div className="flex w-full items-center gap-2 md:w-auto">
               <div className="relative md:hidden">
