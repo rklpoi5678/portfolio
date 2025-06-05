@@ -90,95 +90,22 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "2",
-    title: "모바일 헬스케어 앱 개발",
-    subtitle: "AI 기반 건강 관리 솔루션",
-    description: "인공지능을 활용한 개인 맞춤형 건강 관리 모바일 애플리케이션 개발 프로젝트입니다.",
-    thumbnail: "/placeholder.svg?height=200&width=300",
-    category: "모바일 앱",
-    documentType: "PPT",
-    techStack: ["React Native", "Python", "TensorFlow", "Firebase"],
-    duration: "6개월",
-    team: "8명",
-    role: "Full Stack Developer",
-    publishDate: "2023-12-20",
-    status: "Completed",
-    documentUrl: "/documents/healthcare-app-presentation.pptx",
-    githubUrl: "https://github.com/example/healthcare-app",
-    tags: ["AI/ML", "헬스케어", "모바일 개발", "데이터 분석"],
-    problemStatement: "개인의 건강 상태를 지속적으로 모니터링하고 맞춤형 건강 관리 솔루션을 제공하는 서비스의 부재",
-    solution: "AI 알고리즘을 활용하여 사용자의 생체 데이터를 분석하고 개인화된 건강 관리 계획을 제공하는 모바일 앱 개발",
-    results: [
-      "사용자 건강 지표 평균 25% 개선",
-      "앱 사용 지속률 80% 달성",
-      "의료진 추천률 95%",
-      "월간 활성 사용자 10만명 돌파"
-    ],
-    challenges: [
-      "의료 데이터 보안 및 개인정보 보호",
-      "AI 모델의 정확도 향상",
-      "다양한 웨어러블 기기와의 연동"
-    ],
-    learnings: [
-      "헬스케어 도메인 지식의 중요성",
-      "사용자 프라이버시 보호 방법",
-      "AI 모델 최적화 기법"
-    ]
-  },
-  {
-    id: "3",
-    title: "기업용 대시보드 시스템",
-    subtitle: "실시간 데이터 시각화 플랫폼",
-    description: "대용량 데이터를 실시간으로 처리하고 시각화하는 기업용 대시보드 시스템 구축 프로젝트입니다.",
-    thumbnail: "/placeholder.svg?height=200&width=300",
-    category: "웹 개발",
-    documentType: "PDF",
-    techStack: ["Vue.js", "Node.js", "PostgreSQL", "Redis", "Docker"],
-    duration: "4개월",
-    team: "6명",
-    role: "Backend Developer",
-    publishDate: "2023-11-10",
-    status: "Completed",
-    documentUrl: "/documents/dashboard-system-case-study.pdf",
-    githubUrl: "https://github.com/example/dashboard-system",
-    liveUrl: "https://dashboard.example.com",
-    tags: ["데이터 시각화", "실시간 처리", "대시보드", "백엔드"],
-    problemStatement: "기존 리포팅 시스템의 느린 처리 속도와 제한적인 시각화 기능으로 인한 의사결정 지연",
-    solution: "마이크로서비스 아키텍처와 실시간 데이터 파이프라인을 구축하여 고성능 대시보드 시스템 개발",
-    results: [
-      "데이터 처리 속도 10배 향상",
-      "실시간 업데이트 지연시간 1초 이내",
-      "동시 접속자 1000명 지원",
-      "시스템 가용성 99.9% 달성"
-    ],
-    challenges: [
-      "대용량 데이터 실시간 처리",
-      "다양한 데이터 소스 통합",
-      "확장 가능한 아키텍처 설계"
-    ],
-    learnings: [
-      "마이크로서비스 아키텍처의 장단점",
-      "실시간 데이터 처리 최적화 방법",
-      "모니터링 및 로깅의 중요성"
-    ]
-  },
-  {
-    id: "4",
     title: "AI 챗봇 서비스 개발",
-    subtitle: "자연어 처리 기반 고객 서비스 자동화",
+    subtitle: "자연어 처리 기반 고객 서비스 자동화 (농산물 문자서비스 및 MetaOs 개발용)",
     description: "자연어 처리 기술을 활용한 지능형 고객 서비스 챗봇 시스템 개발 프로젝트입니다.",
     thumbnail: "/placeholder.svg?height=200&width=300",
     category: "AI/ML",
     documentType: "HWP",
-    techStack: ["Python", "TensorFlow", "FastAPI", "MongoDB", "Docker"],
-    duration: "5개월",
-    team: "4명",
+    techStack: ["Python", "TensorFlow", "FastAPI", "MongoDB", "Docker", "Tableau", "Zig"],
+    duration: "미정",
+    team: "1명",
     role: "AI Engineer",
-    publishDate: "2023-10-05",
-    status: "Completed",
+    publishDate: "2025-05-05",
+    status: "In Progress",
     documentUrl: "/documents/chatbot-development.hwp",
     githubUrl: "https://github.com/example/ai-chatbot",
-    tags: ["자연어 처리", "챗봇", "고객 서비스", "머신러닝"],
-    problemStatement: "고객 문의 처리에 소요되는 시간과 비용 증가, 24시간 고객 서비스 제공의 어려움",
+    tags: ["자연어 처리", "챗봇", "고객 서비스", "머신러닝", "SaaS", "HF"],
+    problemStatement: "농산물에서 문자로 배송정보를 수기로 적는것에서 착안 문의 처리에 소요되는 시간과 비용 증가, 24시간 서비스 제공의 어려움",
     solution: "딥러닝 기반 자연어 처리 모델을 활용하여 고객 문의를 자동으로 분류하고 적절한 답변을 제공하는 챗봇 개발",
     results: [
       "고객 문의 처리 시간 60% 단축",
@@ -195,78 +122,6 @@ export const caseStudies: CaseStudy[] = [
       "자연어 처리 모델 최적화 방법",
       "대화형 AI 시스템 설계 원칙",
       "사용자 피드백 기반 모델 개선"
-    ]
-  },
-  {
-    id: "5",
-    title: "블록체인 기반 투표 시스템",
-    subtitle: "투명하고 안전한 전자 투표 플랫폼",
-    description: "블록체인 기술을 활용하여 투명성과 보안성을 보장하는 전자 투표 시스템 개발 프로젝트입니다.",
-    thumbnail: "/placeholder.svg?height=200&width=300",
-    category: "블록체인",
-    documentType: "PDF",
-    techStack: ["Solidity", "Web3.js", "React", "Node.js", "IPFS"],
-    duration: "7개월",
-    team: "5명",
-    role: "Blockchain Developer",
-    publishDate: "2023-09-15",
-    status: "In Progress",
-    documentUrl: "/documents/blockchain-voting-system.pdf",
-    githubUrl: "https://github.com/example/blockchain-voting",
-    tags: ["블록체인", "스마트 컨트랙트", "투표 시스템", "보안"],
-    problemStatement: "기존 투표 시스템의 투명성 부족과 조작 가능성, 높은 운영 비용 문제",
-    solution: "이더리움 블록체인과 스마트 컨트랙트를 활용하여 변조 불가능하고 투명한 투표 시스템 구축",
-    results: [
-      "투표 결과 투명성 100% 보장",
-      "투표 조작 시도 0건",
-      "운영 비용 70% 절감",
-      "투표 참여율 30% 증가"
-    ],
-    challenges: [
-      "블록체인 네트워크 확장성 문제",
-      "사용자 친화적인 인터페이스 설계",
-      "개인정보 보호와 투명성의 균형"
-    ],
-    learnings: [
-      "블록체인 기술의 실제 적용 방법",
-      "스마트 컨트랙트 보안 고려사항",
-      "탈중앙화 시스템 설계 원칙"
-    ]
-  },
-  {
-    id: "6",
-    title: "IoT 스마트 홈 시스템",
-    subtitle: "통합 홈 자동화 플랫폼",
-    description: "다양한 IoT 기기들을 통합 관리할 수 있는 스마트 홈 자동화 시스템 개발 프로젝트입니다.",
-    thumbnail: "/placeholder.svg?height=200&width=300",
-    category: "IoT",
-    documentType: "PPT",
-    techStack: ["Arduino", "Raspberry Pi", "MQTT", "React Native", "AWS IoT"],
-    duration: "4개월",
-    team: "6명",
-    role: "IoT Developer",
-    publishDate: "2023-08-20",
-    status: "Completed",
-    documentUrl: "/documents/smart-home-system.pptx",
-    githubUrl: "https://github.com/example/smart-home",
-    tags: ["IoT", "스마트 홈", "자동화", "센서"],
-    problemStatement: "각기 다른 제조사의 스마트 기기들을 통합 관리할 수 있는 플랫폼의 부재",
-    solution: "표준 프로토콜을 활용하여 다양한 IoT 기기들을 연결하고 통합 제어할 수 있는 플랫폼 개발",
-    results: [
-      "20개 이상 기기 동시 제어 가능",
-      "에너지 사용량 25% 절약",
-      "사용자 편의성 90% 향상",
-      "시스템 안정성 99.5% 달성"
-    ],
-    challenges: [
-      "다양한 통신 프로토콜 호환성",
-      "실시간 데이터 처리 및 동기화",
-      "네트워크 보안 및 개인정보 보호"
-    ],
-    learnings: [
-      "IoT 생태계의 복잡성 이해",
-      "임베디드 시스템 개발 경험",
-      "클라우드 기반 IoT 아키텍처 설계"
     ]
   }
 ]

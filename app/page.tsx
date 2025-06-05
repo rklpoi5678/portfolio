@@ -87,7 +87,7 @@ export default function HomePage() {
             <div className="flex w-full items-center gap-2 md:w-auto">
               <div className="relative md:hidden">
                 <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                <Input type="search" placeholder="Search projects..." className="w-full pl-8" />
+                <Input type="search" placeholder="프로젝트 검색" className="w-full pl-8" />
               </div>
             </div>
           </div>
@@ -140,6 +140,11 @@ export default function HomePage() {
           </Tabs>
         </div>
       </main>
+      <footer className="border-t py-6">
+        <div className="container flex flex-col items-center justify-between gap-4 px-4 text-center md:flex-row md:text-left">
+          <p className="text-sm text-muted-foreground">© 2024 KLogBook. Copyleft.</p>
+        </div>
+      </footer>
     </div>
   )
 }

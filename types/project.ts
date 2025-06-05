@@ -153,7 +153,7 @@ export const projects: Project[] = [
     },
     links: [
       { title: 'GitHub', url: 'https://github.com/rklpoi5678/Apps/tree/master/apps/guguTravel' },
-      { title: 'GooglePlayStore', url: 'https://play.google.com/store/apps/details?id=com.anonymous.guguTravel' }
+      { title: 'GooglePlayStore', url: 'https://play.google.com/store/apps/details?id=com.youngikim.appsgugutravel' }
     ],
     stats: {
       views: 10,
