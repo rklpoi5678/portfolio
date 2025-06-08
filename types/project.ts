@@ -195,12 +195,12 @@ export const projects: Project[] = [
   {
     id: 7,
     title: "토론스 - 세상의 모든 토론 (개발중...)",
-    description: "짜장 vs 짬뽕, 핵개발 vs 핵공유 다른 사람과 경쟁하면서 토론을 주체하고 참여해보세요",
+    description: "짜장 vs 짬뽕, 핵개발 vs 핵공유 다른 사람과 경쟁하면서 토론을 주체하고 참여해보세요 \n\n[토론스] 계정 삭제 방법\n\n저희 [토론스]은 사용자 여러분의 개인 정보 보호를 최우선으로 생각합니다. \n계정 삭제는 앱 내에서 쉽고 안전하게 진행하실 수 있습니다.\n\n계정 삭제 단계:\n[토론스] 앱을 실행합니다.\n로그인 후, '[프로필]' 메뉴로 이동합니다.\n'[프로필]' 또는 하단 섹션에서 '[계정 삭제]' 옵션을 찾습니다.\n안내에 따라 본인 인증 절차를 완료하고 계정 삭제를 요청합니다.\n\n선택 사항: 스크린샷 또는 짧은 동영상 링크를 추가하여 시각적인 안내를 제공하면 더욱 좋습니다.\n만약 앱에 접근할 수 없거나 기술적인 문제로 계정 삭제를 진행할 수 없는 경우, 다음 이메일 주소로 문의해 주시기 바랍니다: [meta-os@zohomail.com] 이는 비상시를 위한 조치입니다.",
     images: [
-      "/mobile-app-ui-design.png",
-      "/placeholder.svg?key=30ry5",
-      "/placeholder.svg?key=lieet",
-      "/placeholder.svg?key=bdm26",
+      "/portfolio/agoralite.png",
+      "/portfolio/agoralite1.png",
+      "/portfolio/agoralite2.png",
+      "/portfolio/agoralite3.png",
     ],
     creator: {
       name: "Kim youn gi",
@@ -209,7 +209,7 @@ export const projects: Project[] = [
     },
     links: [
       { title: 'GitHub', url: 'https://github.com/rklpoi5678/Apps/tree/master/apps/AgoraLite' },
-      { title: 'GooglePlayStore', url: 'https://play.google.com/store/apps/details?id=com.anany.agoralite' }
+      { title: 'GooglePlayStore', url: 'https://play.google.com/store/apps/details?id=com.youngikim.agoralite' }
     ],
     stats: {
       views: 1,
