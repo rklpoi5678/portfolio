@@ -49,12 +49,12 @@ export interface LearningStats {
 // Enhanced Obsidian notes data
 export const obsidianNotes: ObsidianNote[] = [
   {
-    id: "react-fundamentals",
-    title: "React 기초 개념 정리",
-    content: `# React 기초 개념 정리
+    id: "admob",
+    title: "AdMob 기초 개념 정리",
+    content: `# AdMob 기초 개념 정리
 
 ## 개요
-React는 Facebook에서 개발한 사용자 인터페이스를 구축하기 위한 JavaScript 라이브러리입니다.
+AdMob은 Google에서 제공하는 광고 플랫폼입니다.
 
 ## 핵심 개념
 

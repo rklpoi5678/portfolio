@@ -1,13 +1,11 @@
 "use client"
 
-import { ArrowLeft, Clock, Star, BookOpen, Play, CheckCircle, Share2, BookmarkPlus, Tag, Users, Calendar } from "lucide-react"
-import Image from "next/image"
+import { ArrowLeft, Clock, Star, BookOpen, Share2, Tag, Users, Calendar } from "lucide-react"
 import Link from "next/link"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { MainNav } from "@/components/main-nav"
 import { UserNav } from "@/components/user-nav"

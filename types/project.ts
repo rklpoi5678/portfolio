@@ -194,7 +194,7 @@ export const projects: Project[] = [
   },
   {
     id: 7,
-    title: "토론스 - 세상의 모든 토론 (개발중...)",
+    title: "토론스 - 세상의 모든 토론",
     description: "짜장 vs 짬뽕, 핵개발 vs 핵공유 다른 사람과 경쟁하면서 토론을 주체하고 참여해보세요 \n\n[토론스] 계정 삭제 방법\n\n저희 [토론스]은 사용자 여러분의 개인 정보 보호를 최우선으로 생각합니다. \n계정 삭제는 앱 내에서 쉽고 안전하게 진행하실 수 있습니다.\n\n계정 삭제 단계:\n[토론스] 앱을 실행합니다.\n로그인 후, '[프로필]' 메뉴로 이동합니다.\n'[프로필]' 또는 하단 섹션에서 '[계정 삭제]' 옵션을 찾습니다.\n안내에 따라 본인 인증 절차를 완료하고 계정 삭제를 요청합니다.\n\n선택 사항: 스크린샷 또는 짧은 동영상 링크를 추가하여 시각적인 안내를 제공하면 더욱 좋습니다.\n만약 앱에 접근할 수 없거나 기술적인 문제로 계정 삭제를 진행할 수 없는 경우, 다음 이메일 주소로 문의해 주시기 바랍니다: [meta-os@zohomail.com] 이는 비상시를 위한 조치입니다.",
     images: [
       "/portfolio/agoralite.png",
@@ -222,6 +222,34 @@ export const projects: Project[] = [
   },
   {
     id: 8,
+    title: "뚝딱이 - 복잡함 없이 아이디어를 앱/웹 화면으로 ,뚝딱!",
+    description: "뚝딱이 는 어린아이도 레고를 조립하듯, 누구나 쉽게 앱/웹 아이디어를 시각적인 초기 화면으로 빠르게 구현할 수 있도록 돕겠다는 다짐을 담고 있습니다. 전문 디자인 툴의 높은 장벽과 파편화된 기획-개발 과정으로 막막함을 느끼는 비개발자 및 1인 개발자들이 불필요한 과정 없이 핵심 아이디어에 집중하여 세상에 자신의 생각을 뚝딱! 출시할 수 있도록 지원하는 서비스입니다..",
+    images: [
+      "/portfolio/ttugttag-i.png",
+      "/placeholder.svg?key=30ry5",
+      "/placeholder.svg?key=lieet",
+      "/placeholder.svg?key=bdm26",
+    ],
+    creator: {
+      name: "Kim youn gi",
+      avatar: "/avatar-simple.png",
+      followers: "1k",
+    },
+    links: [
+      { title: 'GitHub', url: 'https://github.com/rklpoi5678/ttugttag-i' },
+      { title: 'Website', url: 'https://ttugttag-i.rklpoi5678.workers.dev/' }
+    ],
+    stats: {
+      views: 1,
+      likes: 1,
+      comments: 0,
+    },
+    tags: ["Remix - ReactRouter", "CloudflareWorkers", "Clerk", "D1", "Cloudflare", "desingTool"],
+    tools: ["Remix.js", "ReactRouter V7", "CloudflareWorkers", "Clerk", "D1", "shadnc/ui"],
+    createdAt: "2025-06-16",
+  },
+  {
+    id: 9,
     title: "마케티아 - 마케팅이 처음일때 길잡이 마케티아 (개발중...)",
     description: "기초 부터 차근차근 마케팅에 대하여...",
     images: [
