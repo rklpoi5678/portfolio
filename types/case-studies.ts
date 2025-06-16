@@ -19,6 +19,7 @@ export interface CaseStudy {
   figmaUrl?: string
   githubUrl?: string
   liveUrl?: string
+  portfolioUrl?: string
   tags: string[]
   problemStatement: string
   solution: string
@@ -53,6 +54,7 @@ export const caseStudies: CaseStudy[] = [
     publishDate: "2024-05-07",
     status: "Completed",
     liveUrl: "https://docs.google.com/presentation/d/e/2PACX-1vRGYu69G5wqD8IN40Pn85HUWH1Zrdhufakved4zZFYEfJKHl3wHRB-HyH0gG_bOngEJ3QLRMdvC0ZI_/pub?start=false&loop=false&delayms=3000",
+    portfolioUrl: "/casestudy/portfolio/1",
     tags: ["Performance", "클릭률 최적화", "사용자 연구", "A/B 테스팅"],
     problemStatement: "자사의 규모가 크지않고 아직 소비자가 모르는 회사브랜드인점을 참고하였고 신생브랜드인점",
     solution: "계절성과 25~34여성에 대한 페르소나로 단순화하고, 직관적인 카피를 설계. 낮은 효율을 보이는 키워드들을 OFF하여 효율성을 높혔습니다.",

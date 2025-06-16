@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, Calendar, Clock, Users, Github, Globe, Figma, Download } from "lucide-react"
+import { ArrowLeft, Calendar, Clock, Users, Github, Globe, Figma, Download, GalleryHorizontal } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -107,6 +107,14 @@ export default function CaseStudyDetailPage({ params }: { params: { id: string }
                     <Link href={caseStudy.documentUrl} target="_blank" rel="noopener noreferrer">
                       <Download className="mr-2 h-4 w-4" />
                       문서 다운로드
+                    </Link>
+                  </Button>
+                )}
+                {caseStudy.portfolioUrl && (
+                  <Button variant="outline" className="w-full justify-start" asChild>
+                    <Link href={caseStudy.portfolioUrl} target="_blank" rel="noopener noreferrer">
+                      <GalleryHorizontal className="mr-2 h-4 w-4" />
+                      포트폴리오 바로보기
                     </Link>
                   </Button>
                 )}

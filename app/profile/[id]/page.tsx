@@ -46,10 +46,11 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
           <div className="text-left">
             <h1 className="text-4xl font-extrabold text-gray-900 mb-2">김윤기</h1>
             <p className="text-lg text-gray-700 mb-1">YOUNGI</p>
-            <p className="text-md text-gray-600 mb-1">📍 2000.02.21 | B형</p>
-            <p className="text-md text-gray-600 mb-1">📍 대구광역시 달서구 송현동</p>
-            <p className="text-md text-gray-600 mb-1">📧 hatch_a@naver.com | 📞 010.2180.6913</p>
-            <p className="text-md text-gray-600">🔗 rklpoi1234.github.com</p>
+            <p className="text-md text-gray-600 mb-1">📍 2000.02.21</p>
+            <p className="text-md text-gray-600 mb-1">🗺️ ---</p>
+            <p className="text-md text-gray-600 mb-1">📧 meta-os@zohomail.com | 📞 +82 10-2180-6913</p>
+            <p className="text-md text-gray-600">🔗 rklpoi5678.github.com</p>
+            <p className="text-md text-gray-600">🔗 https://portfolio-six-nu-90.vercel.app/</p>
           </div>
           <div className="flex justify-end">
             <div className="relative w-60 h-60 rounded-lg overflow-hidden">
