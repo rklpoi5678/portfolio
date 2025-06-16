@@ -100,7 +100,7 @@ export default function CaseStudyPage() {
               <div className="ml-auto flex items-center space-x-4">
                 <div className="relative hidden md:flex">
                   <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                  <Input type="search" placeholder="Search jobs..." className="w-[200px] pl-8 md:w-[300px] lg:w-[400px]" />
+                  <Input type="search" placeholder="Search case studies..." className="w-[200px] pl-8 md:w-[300px] lg:w-[400px]" />
                 </div>
                 <Button>포스트</Button>
                 <UserNav />

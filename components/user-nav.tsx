@@ -40,7 +40,7 @@ export function UserNav() {
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem>
-              <Link href="#" className="flex w-full items-center">
+              <Link href="/profile/1" className="flex w-full items-center">
                 프로필
               </Link>
             </DropdownMenuItem>

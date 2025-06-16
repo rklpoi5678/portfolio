@@ -31,7 +31,7 @@ export default function FragmentsDetailPage({ params }: { params: { id: string }
         <div className="relative h-48 w-full bg-muted md:h-64">
           {designer.coverImage && (
             <Image
-              src={designer.coverImage || "/placeholder.svg"}
+              src={designer.coverImage || "@/public/designer-cover.png"}
               alt={`${designer.name}'s cover`}
               fill
               className="object-cover"

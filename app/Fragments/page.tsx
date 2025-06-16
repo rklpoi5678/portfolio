@@ -83,7 +83,7 @@ export default function DesignersPage() {
             <div className="flex w-full items-center gap-2 md:w-auto">
               <div className="relative md:hidden">
                 <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                <Input type="search" placeholder="Search designers..." className="w-full pl-8" />
+                <Input type="search" placeholder="Search fragments..." className="w-full pl-8" />
               </div>
             </div>
           </div>
