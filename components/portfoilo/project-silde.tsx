@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
-import { ScrollSection } from "./scroll-section"
+import { ScrollSection } from "@/components/scroll-section"
 import { Lightbulb, Users, BarChart3 } from "lucide-react"
 import Image from "next/image"
 import type { Project } from "@/types/portfoilo-data"
@@ -18,8 +18,8 @@ export function ProjectSlide({ project, index, className }: ProjectSlideProps) {
   const isEven = index % 2 === 0
   const bgColor =
     project.category === "Performance Marketing"
-      ? "bg-gradient-to-br from-emerald-500 to-teal-600"
-      : "bg-gradient-to-br from-purple-600 to-indigo-700"
+      ? "bg-gradient-to-br from-purple-600 to-indigo-700"
+      : "bg-gradient-to-br from-emerald-500 to-teal-600"
 
   return (
     <div className="space-y-0">
@@ -63,7 +63,7 @@ export function ProjectSlide({ project, index, className }: ProjectSlideProps) {
               <div className="text-center mb-16">
                 <div className="flex items-center justify-center gap-3 mb-6">
                   <Lightbulb className="h-8 w-8 text-emerald-600" />
-                  <h2 className="text-4xl md:text-5xl font-bold text-slate-800">Project Overview</h2>
+                  <h2 className="text-4xl md:text-5xl font-bold text-slate-800">프로젝트 개요</h2>
                 </div>
                 <p className="text-xl text-slate-600">프로젝트의 목적, 배경, 그리고 환경</p>
               </div>
@@ -78,7 +78,7 @@ export function ProjectSlide({ project, index, className }: ProjectSlideProps) {
                   <Card className="h-full border-l-4 border-l-emerald-500 shadow-lg hover:shadow-xl transition-shadow">
                     <CardContent className="p-8">
                       <h3 className="text-2xl font-bold text-slate-800 mb-4">목적 (Purpose)</h3>
-                      <p className="text-slate-600 leading-relaxed">{project.overview.purpose}</p>
+                      <p className="text-slate-600 leading-relaxed" dangerouslySetInnerHTML={{ __html: project.overview.purpose }} />
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -91,8 +91,8 @@ export function ProjectSlide({ project, index, className }: ProjectSlideProps) {
                 >
                   <Card className="h-full border-l-4 border-l-blue-500 shadow-lg hover:shadow-xl transition-shadow">
                     <CardContent className="p-8">
-                      <h3 className="text-2xl font-bold text-slate-800 mb-4">배경 (Context)</h3>
-                      <p className="text-slate-600 leading-relaxed">{project.overview.context}</p>
+                      <h3 className="text-2xl font-bold text-slate-800 mb-4">역할 (Context)</h3>
+                      <p className="text-slate-600 leading-relaxed" dangerouslySetInnerHTML={{ __html: project.overview.context }} />
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -105,8 +105,8 @@ export function ProjectSlide({ project, index, className }: ProjectSlideProps) {
                 >
                   <Card className="h-full border-l-4 border-l-purple-500 shadow-lg hover:shadow-xl transition-shadow">
                     <CardContent className="p-8">
-                      <h3 className="text-2xl font-bold text-slate-800 mb-4">환경 (Environment)</h3>
-                      <p className="text-slate-600 leading-relaxed">{project.overview.environment}</p>
+                      <h3 className="text-2xl font-bold text-slate-800 mb-4">성과</h3>
+                      <p className="text-slate-600 leading-relaxed" dangerouslySetInnerHTML={{ __html: project.overview.environment }} />
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -124,9 +124,9 @@ export function ProjectSlide({ project, index, className }: ProjectSlideProps) {
               <div className="text-center mb-16">
                 <div className="flex items-center justify-center gap-3 mb-6">
                   <Users className="h-8 w-8 text-blue-600" />
-                  <h2 className="text-4xl md:text-5xl font-bold text-slate-800">My Role & Process</h2>
+                  <h2 className="text-4xl md:text-5xl font-bold text-slate-800">나의 역할</h2>
                 </div>
-                <p className="text-xl text-slate-600">담당 역할과 수행한 프로세스</p>
+                <p className="text-xl text-slate-600">프로젝트에서의 기여도와 책임 영역</p>
               </div>
 
               <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -141,7 +141,7 @@ export function ProjectSlide({ project, index, className }: ProjectSlideProps) {
                     <Badge variant="secondary" className="text-lg px-6 py-3 bg-blue-100 text-blue-800">
                       {project.role.position}
                     </Badge>
-                    <div className="flex gap-4 text-slate-600">
+                    <div className="flex md:grid-cols-2 gap-8 text-slate-700">
                       <span>
                         <strong>기간:</strong> {project.role.duration}
                       </span>
@@ -157,14 +157,14 @@ export function ProjectSlide({ project, index, className }: ProjectSlideProps) {
                       {project.role.responsibilities.map((responsibility, idx) => (
                         <motion.div
                           key={idx}
-                          initial={{ opacity: 0, x: -20 }}
+                          initial={{ opacity: 0, x: -50 }}
                           whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.5, delay: idx * 0.1 }}
+                          transition={{ duration: 0.6, delay: idx * 0.1 }}
                           viewport={{ once: true }}
                           className="flex items-start gap-3 p-4 bg-white rounded-lg shadow-sm border-l-4 border-l-blue-400"
                         >
                           <div className="w-2 h-2 bg-blue-400 rounded-full mt-3 flex-shrink-0" />
-                          <p className="text-slate-700">{responsibility}</p>
+                          <p className="text-slate-700" dangerouslySetInnerHTML={{ __html: responsibility }} />
                         </motion.div>
                       ))}
                     </div>
@@ -261,8 +261,8 @@ export function ProjectSlide({ project, index, className }: ProjectSlideProps) {
                   className="space-y-6"
                 >
                   <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-6">
-                    <h4 className="text-xl font-bold text-emerald-400 mb-4">전문성 성장</h4>
-                    <p className="text-slate-200 leading-relaxed">{project.results.growth}</p>
+                    <h4 className="text-xl font-bold text-emerald-400 mb-4">성장</h4>
+                    <p className="text-slate-200 leading-relaxed" dangerouslySetInnerHTML={{ __html: project.results.growth }} />
                   </div>
 
                   <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-6">

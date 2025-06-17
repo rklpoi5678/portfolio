@@ -1,158 +1,116 @@
-"use client"
+// components/hero-section.tsx
 
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Download, Mail, Linkedin, Github, MapPin } from "lucide-react"
-import { personalInfo, skills } from "@/types/portfoilo-data"
-import Image from "next/image"
+// motion 임포트를 제거합니다.
+// import { motion } from "framer-motion"; // 이 줄을 제거하거나 주석 처리
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.1,
-    },
-  },
-}
+import { X, Palette, FileText, LayoutTemplate, Presentation, SlidersHorizontal, Code } from "lucide-react";
+import { personalInfo } from "@/types/portfoilo-data";
+import { SiGoogletagmanager, SiGoogleanalytics, SiFacebook, SiLibreoffice } from '@icons-pack/react-simple-icons'
+// 스킬 아이콘 매핑 (image_1ff4c7.png의 Tools 섹션용)
+const resumeSkillIcons = {
+  GA: SiGoogleanalytics,
+  GTM: SiGoogletagmanager,
+  FB: SiFacebook,
+  PS: Presentation,
+  EX: SiLibreoffice, // Illustrator (슬라이더, 임시)
+  PPT: Code,       // Ad Group Campaign (코드, 임시)
+};
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
-}
+// Skills Tools 데이터 (image_1ff4c7.png의 Tools 섹션용)
+const resumeSkillsData = [
+    { icon: "GA", level: "중급" },
+    { icon: "GTM", level: "중급" },
+    { icon: "FB", level: "중급" },
+    { icon: "Photoshop", level: "중급" },
+    { icon: "Excel", level: "초급" },
+    { icon: "PowerPoint", level: "초급" },
+];
 
-const floatingVariants = {
-  animate: {
-    y: [-10, 10, -10],
-    transition: {
-      duration: 6,
-      repeat: Number.POSITIVE_INFINITY,
-      ease: "easeInOut",
-    },
-  },
-}
+// 목차 데이터 (마케터 포트폴리오 목차 예시로 변경)
+export const tableOfContents = [
+    "1. 퍼포먼스 마케팅 프로젝트 (검색/디스플레이 광고)",
+    "2. 데이터 분석 및 시각화 역량",
+    "3. 브랜드 마케팅 기획 및 실행 경험",
+    "4. 소셜 미디어 마케팅 사례",
+    "5. 자기소개 및 강점",
+  ];
 
 export function HeroSection() {
-  const handleExportPDF = () => {
-    alert("PDF export functionality would be implemented here using libraries like jsPDF or react-to-pdf")
-  }
-
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-emerald-200 to-teal-300 rounded-full opacity-20"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-        />
-        <motion.div
-          className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-slate-200 to-slate-300 rounded-full opacity-20"
-          animate={{ rotate: -360 }}
-          transition={{ duration: 25, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-        />
-      </div>
+    // min-h-screen을 유지하고, 배경을 위한 relative
+    <section className="pdf-page-break min-h-screen bg-gray-50 text-slate-800 relative overflow-hidden">
+      {/* Animated Background Elements - 제거 또는 주석 처리 유지 */}
+      {/* (주석 처리된 코드 생략) */}
 
-      <div className="container mx-auto px-4 py-20 relative z-10">
-        <motion.div className="max-w-6xl mx-auto" variants={containerVariants} initial="hidden" animate="visible">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Column - Content */}
-            <div className="space-y-8">
-              <motion.div variants={itemVariants} className="space-y-4">
-                <div className="flex items-center gap-2 text-slate-600">
-                  <MapPin className="h-4 w-4" />
-                  <span className="text-sm">{personalInfo.location}</span>
-                </div>
-                <h1 className="text-5xl lg:text-6xl font-bold text-slate-800 leading-tight">
-                  {personalInfo.nameEn}
-                  <span className="block text-2xl lg:text-3xl text-slate-600 font-normal mt-2">
-                    {personalInfo.name}
-                  </span>
-                </h1>
-                <p className="text-xl lg:text-2xl text-emerald-600 font-medium">{personalInfo.title}</p>
-              </motion.div>
+      {/* Main Content Container: 이제 flex-col로 상단-중간-하단 배치 */}
+      {/* h-screen으로 뷰포트 높이 전체를 차지하고, padding-top과 padding-bottom으로 여백 조절 */}
+      <div className="container mx-auto px-8 relative z-10 w-full h-screen flex flex-col pt-12 pb-16"> {/* pt-12 (상단 여백), pb-16 (하단 여백) */}
+        {/* Top Left Text: 이제 flex 컨테이너의 첫 번째 아이템이 됨. absolute 제거 */}
+        <div className="text-left text-sm text-gray-600 mb-8 md:ml-16"> {/* mb-8로 아래 메인 타이틀과의 간격 확보 */}
+          [지원 분야] 마케팅 직무_브랜드마케팅팀
+        </div>
 
-              <motion.p variants={itemVariants} className="text-lg text-slate-600 leading-relaxed max-w-2xl">
-                {personalInfo.bio}
-              </motion.p>
+        {/* Main Title Block: flex-grow를 주어 남은 공간을 채우면서 중앙 정렬 */}
+        {/* absolute 제거, flex-col 내에서 중앙에 배치되도록 margin auto 사용 */}
+        <div className="flex-grow flex items-center justify-center text-center"> {/* flex-grow와 중앙 정렬 유지 */}
+          <div className="max-w-4xl mx-auto space-y-4 px-8"> {/* px-8로 좌우 패딩 유지 */}
+            <h1 className="text-5xl md:text-6xl font-bold leading-tight tracking-tight text-gray-800">
+              데이터 기반
+              <span className="text-purple-600 text-6xl px-2">X</span>
+              유연한 소통
+            </h1>
+            <p className="text-4xl md:text-5xl font-light leading-snug text-gray-700">
+              최적의 성과를 이끌어낼
+            </p>
+            <p className="text-5xl md:text-6xl font-bold leading-tight text-gray-800">
+              퍼포먼스 마케터 {personalInfo.name}입니다.
+            </p>
+          </div>
+        </div>
 
-              <motion.div variants={itemVariants} className="space-y-4">
-                <h3 className="text-lg font-semibold text-slate-800">Core Expertise</h3>
-                <div className="flex flex-wrap gap-2">
-                  {skills.marketing.slice(0, 6).map((skill) => (
-                    <Badge key={skill} variant="secondary" className="bg-emerald-100 text-emerald-800">
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </motion.div>
-
-              <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
-                <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 gap-2">
-                  <Mail className="h-4 w-4" />
-                  Get In Touch
-                </Button>
-                <Button variant="outline" size="lg" className="gap-2" onClick={handleExportPDF}>
-                  <Download className="h-4 w-4" />
-                  Download Portfolio
-                </Button>
-                <div className="flex gap-2">
-                  <Button variant="ghost" size="icon">
-                    <Linkedin className="h-5 w-5" />
-                  </Button>
-                  <Button variant="ghost" size="icon">
-                    <Github className="h-5 w-5" />
-                  </Button>
-                </div>
-              </motion.div>
+        {/* Bottom Section with three columns: flex 컨테이너의 마지막 아이템이 됨 */}
+        <div className="w-full flex justify-center md:justify-start mt-auto"> {/* mt-auto로 항상 바닥에 붙도록 함 */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-20 w-full max-w-7xl mx-auto items-end">
+            {/* Column 1: Personal Info */}
+            <div className="text-left text-sm text-gray-700 space-y-1">
+              <p className="text-lg font-semibold">{personalInfo.nameEn}</p>
+              <p>{personalInfo.birthDate || '1996.01.10'}</p>
+              <p className="mt-4">Portfolio {personalInfo.portfolioPeriod || '2019-2020'}</p>
+              <p>{personalInfo.phone}</p>
+              <p>{personalInfo.email}</p>
             </div>
 
-            {/* Right Column - Visual */}
-            <motion.div variants={itemVariants} className="relative flex justify-center lg:justify-end">
-              <motion.div variants={floatingVariants} animate="animate" className="relative">
-                <div className="w-80 h-80 relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full opacity-20 blur-xl" />
-                  <div className="absolute inset-4 bg-white rounded-full shadow-2xl overflow-hidden">
-                    <Image
-                      src={personalInfo.avatar || "/placeholder.svg"}
-                      alt={personalInfo.name}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                </div>
-              </motion.div>
+            {/* Column 2: Skills Tools */}
+            <div className="text-left">
+              <h3 className="font-bold text-gray-700 mb-2">Skills <span className="font-normal text-sm">Tools</span></h3>
+              <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-sm text-gray-600">
+                  {resumeSkillsData.map((skill, idx) => {
+                      const IconComponent = resumeSkillIcons[skill.icon as keyof typeof resumeSkillIcons];
+                      return (
+                          <div key={idx} className="flex items-center gap-2">
+                              {IconComponent && <IconComponent className="h-5 w-5 text-gray-500" />}
+                              <span>{skill.icon}</span>
+                              <span className="text-xs text-gray-500">({skill.level})</span>
+                          </div>
+                      );
+                  })}
+              </div>
+            </div>
 
-              {/* Floating Stats */}
-              <motion.div
-                className="absolute top-10 -left-10 bg-white rounded-lg shadow-lg p-4 border"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1, duration: 0.5 }}
-              >
-                <div className="text-2xl font-bold text-emerald-600">340%</div>
-                <div className="text-sm text-slate-600">Avg ROAS Improvement</div>
-              </motion.div>
-
-              <motion.div
-                className="absolute bottom-10 -right-10 bg-white rounded-lg shadow-lg p-4 border"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.2, duration: 0.5 }}
-              >
-                <div className="text-2xl font-bold text-slate-800">15+</div>
-                <div className="text-sm text-slate-600">Successful Campaigns</div>
-              </motion.div>
-            </motion.div>
+            {/* Column 3: Table of Contents */}
+            <div className="text-left text-gray-700">
+              <h3 className="font-bold mb-2 p-2 bg-gray-200 inline-block">Table of Contents</h3>
+              <ul className="text-sm space-y-1 mt-2">
+                <li>1. 퍼포먼스 마케팅 프로젝트 (검색/디스플레이 광고)</li>
+                <li>2. 데이터 분석 및 시각화 역량 </li>
+                <li>3. 브랜드 마케팅 기획 및 실행 경험</li>
+                <li>4. 소셜 미디어 마케팅 사례</li>
+                <li>5. 자기소개서 및 강점</li>
+              </ul>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
-  )
+  );
 }
