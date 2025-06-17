@@ -15,16 +15,59 @@ interface params {
 
 export default function Portfolio({ params }: { params: params }) {
   const [scrollY, setScrollY] = useState(0)
-
+  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false); // PDF 생성 중 상태 추가
+  
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY)
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const handleExportPDF = () => {
-    alert("PDF export functionality would be implemented here using libraries like jsPDF or react-to-pdf")
-  }
+  const handleExportPDF = async() => {
+    setIsGeneratingPdf(true);
+    const currentPortfolioUrl = window.location.href;
+    console.log(currentPortfolioUrl)
+
+    try {
+        const response = await fetch('/api/generate-portfolio-pdf', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ url: currentPortfolioUrl }),
+        });
+        if (!response.ok) {
+            let errorData 
+            // 응답 헤더의 Content-Type을 확인하여 JSON인지 아닌지 판단합니다.
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                errorData = await response.json(); //JSON 형식의 오류 메시지 파싱
+            } else {
+                errorData = { message: await response.text()}; //일반 텍스트 오류 메시지
+            }
+            throw new Error(`PDF생성 실패: ${response.status} ${response.statusText}: ${errorData.message || '알 수 없는 서버 오류'}`);
+        }
+
+        // res로 받은 PDF Blob 데이터 처리
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'full_portfolio.pdf';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(url); // URL해체 (메모리 누수 방지)
+
+        alert("PDF 내보내기가 완료되었습니다.")
+
+    } catch (error) {
+        console.error('PDF 생성 중 오류:', error);
+        alert(`PDF 내보내기 중 오류가 발생했습니다. ${(error as Error).message || '알수 없는 오류'}`)
+    } finally {
+        setIsGeneratingPdf(false);
+    }
+  };
 
   const skillCategories = [
     {
@@ -78,7 +121,7 @@ export default function Portfolio({ params }: { params: params }) {
       </nav>
 
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600 text-white relative overflow-hidden">
+      <section className="pdf-page-break min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600 text-white relative overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
           <motion.div
@@ -177,7 +220,7 @@ export default function Portfolio({ params }: { params: params }) {
       </section>
 
       {/* Skills Section */}
-      <section className="min-h-screen flex items-center justify-center bg-white">
+      <section className="pdf-page-break min-h-screen flex items-center justify-center bg-white">
         <div className="container mx-auto px-8">
           <ScrollSection>
             <div className="text-center mb-16">
@@ -222,7 +265,7 @@ export default function Portfolio({ params }: { params: params }) {
       </section>
 
       {/* Projects Section */}
-      <section className="bg-slate-50">
+      <section className="pdf-page-break bg-slate-50">
         <div className="container mx-auto px-8 py-20">
           <ScrollSection>
             <div className="text-center mb-16">
@@ -237,11 +280,11 @@ export default function Portfolio({ params }: { params: params }) {
 
       {/* Project Slides */}
       {projects.map((project, index) => (
-        <ProjectSlide key={project.id} project={project} index={index} />
+        <ProjectSlide className="pdf-page-break" key={project.id} project={project} index={index} />
       ))}
 
       {/* Contact Section */}
-      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900 text-white">
+      <section className="pdf-page-break min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900 text-white">
         <div className="container mx-auto px-8 text-center">
           <ScrollSection>
             <motion.div

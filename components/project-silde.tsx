@@ -11,9 +11,10 @@ import type { Project } from "@/types/portfoilo-data"
 interface ProjectSlideProps {
   project: Project
   index: number
+  className?: string
 }
 
-export function ProjectSlide({ project, index }: ProjectSlideProps) {
+export function ProjectSlide({ project, index, className }: ProjectSlideProps) {
   const isEven = index % 2 === 0
   const bgColor =
     project.category === "Performance Marketing"
@@ -24,7 +25,7 @@ export function ProjectSlide({ project, index }: ProjectSlideProps) {
     <div className="space-y-0">
       {/* Project Title Slide */}
       <section
-        className={`min-h-screen flex items-center justify-center ${bgColor} text-white relative overflow-hidden`}
+        className={`${className || ''} min-h-screen flex items-center justify-center ${bgColor} text-white relative overflow-hidden`}
       >
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-20 w-64 h-64 bg-white rounded-full blur-3xl" />

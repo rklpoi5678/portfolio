@@ -92,3 +92,9 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@media print {
+  .pdf-page-break {
+    page-break-before: always;
+  }
+}
