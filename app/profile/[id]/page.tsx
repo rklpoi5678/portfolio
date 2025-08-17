@@ -25,7 +25,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   const nextLabel = isResumePage ? '자기소개서 →' : '← 이력서';
 
   // const profileImageUrl = '/profile-image-resume.jpg';
-  const profileImageUrl = '/designer-cover.png';
+  const profileImageUrl = '/nonreal.png';
   return (
     <>
       <Head>
@@ -54,7 +54,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
           </div>
           <div className="flex justify-end">
             <div className="relative w-60 h-60 rounded-lg overflow-hidden">
-              <Image src={profileImageUrl} alt="프로필 사진" layout="fill" objectFit="cover" />
+              <Image src={profileImageUrl} alt="프로필 사진" layout="fill" objectFit="contain" />
             </div>
           </div>
         </header>

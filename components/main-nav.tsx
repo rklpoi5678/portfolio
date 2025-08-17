@@ -13,9 +13,7 @@ export function MainNav() {
           Discover
         </Link>
         <Link
-          href="/Fragments"
-          className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-        >
+          href="/Fragments" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
           Fragments
         </Link>
         <Link href="/casestudy" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
@@ -24,6 +22,10 @@ export function MainNav() {
         <Link href="/learn" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
           Learn
         </Link>
+        <Link href="https://nextra-blog-3t4s.vercel.app/" className="text-sm font-medium text-muted-foreground transition-colors hovor: text-primary">
+          Blog
+        </Link>
+        
       </nav>
     </div>
   )
