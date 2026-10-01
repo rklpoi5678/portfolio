@@ -1,0 +1,11 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#0A0A0B"/>
+  <circle cx="400" cy="220" r="80" fill="none" stroke="#6366F1" stroke-width="1" opacity="0.2"/>
+  <circle cx="400" cy="220" r="50" fill="none" stroke="#22D3EE" stroke-width="1" opacity="0.3"/>
+  <ellipse cx="400" cy="360" rx="180" ry="80" fill="none" stroke="#6366F1" stroke-width="1.5" opacity="0.3"/>
+  <line x1="220" y1="360" x2="400" y2="220" stroke="#6366F1" stroke-width="1.5" opacity="0.4"/>
+  <line x1="580" y1="360" x2="400" y2="220" stroke="#6366F1" stroke-width="1.5" opacity="0.4"/>
+  <rect x="360" y="380" width="80" height="40" rx="4" fill="#6366F1" opacity="0.3"/>
+  <text x="400" y="480" text-anchor="middle" fill="white" font-family="system-ui" font-size="24" font-weight="bold">Korea Competition</text>
+  <text x="400" y="510" text-anchor="middle" fill="#888" font-family="system-ui" font-size="14">Inje Racing Round 8 Champion</text>
+</svg>
